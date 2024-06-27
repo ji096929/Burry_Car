@@ -585,6 +585,16 @@
               <FileType>8</FileType>
               <FilePath>..\User\Device\dvc_Tjc011.cpp</FilePath>
             </File>
+            <File>
+              <FileName>dvc_cargo.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Device\dvc_cargo.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>dvc_cargo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\Device\dvc_cargo.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

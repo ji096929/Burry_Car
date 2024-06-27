@@ -1,7 +1,7 @@
 #include "dvc_ER08.h"
 #include "string.h"
 
-uint8_t flag=0;
+
 
 void Class_ER08::Init(UART_HandleTypeDef *huart)
 {
@@ -56,8 +56,8 @@ void Class_ER08::Data_Process()
     
     memcpy(tel, tmp_buffer->tel, 11 * sizeof(uint8_t));
     memcpy(code, tmp_buffer->code,4 * sizeof(uint8_t));
-  
-    flag=1;
+
+    Updata_Flag = 1;
 }
 
 /**
@@ -68,7 +68,7 @@ void Class_ER08::Data_Process()
 void Class_ER08::UART_RxCpltCallback(uint8_t *Rx_Data)
 {
 
-    Data_Process();
-
+    Data_Process(); 
+    
   
 }

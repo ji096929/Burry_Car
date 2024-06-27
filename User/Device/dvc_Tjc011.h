@@ -17,6 +17,8 @@ public:
     void UART_RxCpltCallback(uint8_t *Rx_Data);
     inline char * Get_Input_Number(void);
 
+    uint8_t Input_data_Flag=0;
+
 protected:
     void Data_Process();
 

@@ -22,77 +22,23 @@
 #include "dvc_ER08.h"
 #include "dvc_SIM900A.h"
 #include "dvc_Tjc011.h"
+#include "dvc_cargo.h"
 /* Exported macros -----------------------------------------------------------*/
 class Class_Chariot;
 /* Exported types ------------------------------------------------------------*/
 
 /**
- * @brief 云台Pitch状态枚举
+ * @brief 状态枚举
  *
  */
-enum Enum_Pitch_Control_Status 
+enum Enum_Chariot_Control_Status 
 {
-    Pitch_Status_Control_Free = 0, 
-    Pitch_Status_Control_Lock ,
-};
-
-enum Enum_MinPC_Aim_Status
-{
-    MinPC_Aim_Status_DISABLE = 0,
-    MinPC_Aim_Status_ENABLE,
-};
-
-/**
- * @brief 摩擦轮状态
- *
- */
-enum Enum_Fric_Status :uint8_t
-{
-    Fric_Status_CLOSE = 0,
-    Fric_Status_OPEN,
+    Chariot_Disable_Status = 0,
+    Chariot_Put_Cargo_Status, 
+    Chariot_Get_Cargo_Status,
 };
 
 
-/**
- * @brief 弹舱状态类型
- *
- */
-enum Enum_Bulletcap_Status :uint8_t
-{
-    Bulletcap_Status_CLOSE = 0,
-    Bulletcap_Status_OPEN,
-};
-
-
-/**
- * @brief 底盘通讯状态
- *
- */
-enum Enum_Chassis_Status
-{
-    Chassis_Status_DISABLE = 0,
-    Chassis_Status_ENABLE,
-};
-
-/**
- * @brief 云台通讯状态
- *
- */
-enum Enum_Gimbal_Status
-{
-    Gimbal_Status_DISABLE = 0,
-    Gimbal_Status_ENABLE,
-};
-
-/**
- * @brief DR16控制数据来源
- *
- */
-enum Enum_DR16_Control_Type
-{
-    DR16_Control_Type_REMOTE = 0,
-    DR16_Control_Type_KEYBOARD,
-};
 
 /**
  * @brief 机器人控制有限自动机
@@ -118,9 +64,20 @@ public:
     Class_ER08 ER08;
     Class_SIM900A SIM900A;
     Class_Tjc011 Tjc011;
+    Struct_Cargo Cargo[10];
+    Struct_Cargo Now_Cargo;
+    uint8_t Now_Cargo_Number;
+    Enum_Chariot_Control_Status Control_Status = Chariot_Disable_Status;
     friend class Class_FSM_Chariot_Control;
 
     void Init();
+
+    void Get_Cargo_Data();
+    uint8_t Jundge_Cargo();
+
+    void Set_Control_Status(Enum_Chariot_Control_Status status);
+    Enum_Chariot_Control_Status Get_Control_Status();
+
     void TIM_Calculate_PeriodElapsedCallback();
     void TIM1msMod50_Alive_PeriodElapsedCallback();
 

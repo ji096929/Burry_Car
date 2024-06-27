@@ -58,6 +58,8 @@ void Class_Tjc011::Data_Process()
         a = strlen(input_number);
     }
     memcpy(UART_Manage_Object->Rx_Buffer,0,20 * sizeof(uint8_t));
+
+    Input_data_Flag = 1;
 }
 
 /**

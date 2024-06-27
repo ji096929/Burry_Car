@@ -30,6 +30,7 @@ uint16_t Motor_Pre_Encoder[4];
 
 uint8_t buffer1[18];
 uint8_t buffer2[4];
+
 Class_Chariot Chariot;
 
 //机器人控制对象
@@ -167,12 +168,6 @@ void TIM7_Task5ms_PeriodElapsedCallback()
     //统一打包发送
     TIM_UART_PeriodElapsedCallback();
 	
-   if(cnt>500&&flag==1)
-   { 
-	   flag=0;
-	   Chariot.SIM900A.Sim900a_Send_Data(Chariot.ER08.Get_code(), Chariot.ER08.Get_tel());
-	   cnt=0;
-   }
 }
 
 /**

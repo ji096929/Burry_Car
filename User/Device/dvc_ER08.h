@@ -23,6 +23,8 @@ public:
     inline char *Get_tel(void);
     inline char *Get_code(void);
 
+    uint8_t Updata_Flag=0;
+
 protected:
     // 绑定的UART
     Struct_UART_Manage_Object *UART_Manage_Object;
@@ -30,10 +32,12 @@ protected:
     Struct_ER08_UART_Data Now_UART_Rx_Data;
     uint8_t x;
     uint8_t y;
+    
     char tel[11];
     char code[4];
     void Data_Process();
 };
+
 
 uint8_t Class_ER08::Get_x()
 {
@@ -57,4 +61,3 @@ char *Class_ER08::Get_code()
     return (code);
 }
 
-extern uint8_t flag;
