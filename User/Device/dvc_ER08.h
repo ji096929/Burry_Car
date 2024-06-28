@@ -30,6 +30,8 @@ protected:
     Struct_UART_Manage_Object *UART_Manage_Object;
 
     Struct_ER08_UART_Data Now_UART_Rx_Data;
+    Struct_ER08_UART_Data Pre_UART_Rx_Data;
+
     uint8_t x;
     uint8_t y;
     

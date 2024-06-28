@@ -10,7 +10,16 @@ struct Struct_Cargo
     uint8_t Position_Y;
     uint8_t Phone_Number[11];
     uint8_t Code[4];
+    Struct_Cargo* Next_Cargo;
 } __attribute__((packed));
 
+
+class Class_Cargo_List
+{
+    Struct_Cargo* First_Cargo;
+
+    void Init();
+    void Add_Cargo(uint8_t Position_X, uint8_t Position_Y, uint8_t Phone_Number[11], uint8_t Code[4]);
+};
 
 #endif

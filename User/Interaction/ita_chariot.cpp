@@ -32,18 +32,18 @@
 // 夹取 1 3 4 2
 // 放回 2 4 3 1
 // 舵机输出轴方向看过去，逆时针旋转
-float test_angle_1=-35;
-float test_angle_2=0;
-float test_angle_3=60;
-float test_angle_4=30;
+float test_angle_1 = -55;
+float test_angle_2 = 0;
+float test_angle_3 = 60;
+float test_angle_4 = 30;
 void Class_Chariot::Init_Position()
 {
     // 默认先松开夹爪
 
-    //Servo[0].Set_Angle(20);
+    // Servo[0].Set_Angle(20);
     Servo[1].Set_Angle(10);
-    //Servo[2].Set_Angle(60);
-    //Servo[3].Set_Angle(30);
+    // Servo[2].Set_Angle(60);
+    // Servo[3].Set_Angle(30);
     //__HAL_TIM_SET_COMPARE(&htim14, TIM_CHANNEL_1, 1000);
 
     // if (__time_cnt >= 450) // 抬起大臂 500ms
@@ -59,74 +59,81 @@ void Class_Chariot::Init_Position()
     //     Servo[3].Set_Angle(0);
     // }
 }
-//void Class_Chariot::Get_Burry(uint16_t __time_cnt)
+// void Class_Chariot::Get_Burry(uint16_t __time_cnt)
 //{
-//    // 默认先松开夹爪
-//    if (__time_cnt >= 50) // 夹取
-//    {
-//        Servo[0].Set_Angle(test_angle_1);
-//        Servo[1].Set_Angle(test_angle_2);
-//        Servo[2].Set_Angle(test_angle_3);
-//        Servo[3].Set_Angle(test_angle_4);
-//        //__HAL_TIM_SET_COMPARE(&htim14, TIM_CHANNEL_1, 1000);
-//    }
-//    // if (__time_cnt >= 450) // 抬起大臂 500ms
-//    // {
-//    //     Servo[1].Set_Angle(0);
-//    // }
-//    // if (__time_cnt >= 720) // 旋转yaw 500ms
-//    // {
-//    //     Servo[2].Set_Angle(0);
-//    // }
-//    // if (__time_cnt >= 920) // 折叠小臂 50ms
-//    // {
-//    //     Servo[3].Set_Angle(0);
-//    // }
-//}
-float hi_angle=15;
-float low_angle=-20;
-float delta=0.01;
+//     // 默认先松开夹爪
+//     if (__time_cnt >= 50) // 夹取
+//     {
+//         Servo[0].Set_Angle(test_angle_1);
+//         Servo[1].Set_Angle(test_angle_2);
+//         Servo[2].Set_Angle(test_angle_3);
+//         Servo[3].Set_Angle(test_angle_4);
+//         //__HAL_TIM_SET_COMPARE(&htim14, TIM_CHANNEL_1, 1000);
+//     }
+//     // if (__time_cnt >= 450) // 抬起大臂 500ms
+//     // {
+//     //     Servo[1].Set_Angle(0);
+//     // }
+//     // if (__time_cnt >= 720) // 旋转yaw 500ms
+//     // {
+//     //     Servo[2].Set_Angle(0);
+//     // }
+//     // if (__time_cnt >= 920) // 折叠小臂 50ms
+//     // {
+//     //     Servo[3].Set_Angle(0);
+//     // }
+// }
+float hi_angle = 20;
+float low_angle = -30;
+float delta = 0.01;
 void Class_Chariot::Scan_Burry(uint16_t __time_cnt)
 {
-    static float delta_angle = 20;
+    static float delta_angle = -30;
 
-    delta_angle += delta;
-    if (delta_angle > hi_angle)
-        delta_angle = low_angle;
-Servo[0].Set_Angle(test_angle_1);
+	  delta_angle += delta;
+    if (delta_angle > hi_angle || delta_angle < low_angle)
+        delta *= -1.0f;
+	    
+    Servo[0].Set_Angle(test_angle_1);
     Servo[1].Set_Angle(delta_angle);
+    Servo[2].Set_Angle(60);
+    Servo[3].Set_Angle(30);
 }
-//有货夹取放车上
-//1 3 4 2 
-// -5 -45 90 90
+// 有货夹取放车上
+// 1 3 4 2
+//  -5 -45 90 90
 
-//有货放置到货架上
-//2 4 3 1
+// 有货放置到货架上
+// 2 4 3 1
 //-45 30 -75 -30
 
-//无货去货架夹取 记得最后夹取
-//2 4 3 1
+// 无货去货架夹取 记得最后夹取
+// 2 4 3 1
 //-45 30 -75 -5
 
-//无货 取货回来放置 夹爪保持放置
-//1 2 3 4
+// 无货 取货回来放置 夹爪保持放置
+// 1 2 3 4
 //-5 初始 初始 初始
 
 void Class_Chariot::Burry_Input_Cargo_1(uint16_t __time_cnt)
 {
-    if(__time_cnt >= 50)
+    if (__time_cnt >= 50)
+    {
+        Servo[1].Set_Angle(-10);
+    }
+    if (__time_cnt >= 250)
     {
         Servo[0].Set_Angle(-5);
     }
-	if(__time_cnt >= 260)
-	{
+    if (__time_cnt >= 560)
+    {
         Servo[2].Set_Angle(-45);
-    }   
-    if(__time_cnt >= 660)
-	{
-        Servo[3].Set_Angle(-45);
     }
-	if(__time_cnt >= 1260)
+    if (__time_cnt >= 1060)
+    {
+        Servo[3].Set_Angle(90);
+    }
+    if (__time_cnt >= 1460)
     {
         Servo[1].Set_Angle(90);
     }
@@ -156,35 +163,35 @@ void Class_Chariot::Burry_Output_Cargo_1(uint16_t __time_cnt)
 {
     Servo[0].Set_Angle(-30);
     Servo[1].Set_Angle(-45);
-	Servo[3].Set_Angle(30);
-	Servo[2].Set_Angle(-75);
-    if(__time_cnt >= 2000)
+    Servo[3].Set_Angle(30);
+    Servo[2].Set_Angle(-75);
+    if (__time_cnt >= 2000)
     {
-        Servo[0].Set_Angle(-5);	
+        Servo[0].Set_Angle(-5);
     }
 }
 
 void Class_Chariot::Burry_Output_Cargo_2(uint16_t __time_cnt)
 {
-	Servo[1].Set_Angle(0);
-	Servo[3].Set_Angle(30);
-	Servo[2].Set_Angle(60);
-	Servo[0].Set_Angle(-5);		
+    Servo[1].Set_Angle(0);
+    Servo[3].Set_Angle(30);
+    Servo[2].Set_Angle(60);
+    Servo[0].Set_Angle(-5);
 }
 
 void Class_Chariot::Midlle_Position(uint16_t __time_cnt)
 {
     if (__time_cnt >= 50)
     {
-        Servo[1].Set_Angle(90);
+        Servo[2].Set_Angle(-45);
     }
-    if (__time_cnt >= 260)
+    if (__time_cnt >= 360)
     {
-        Servo[3].Set_Angle(-45);
+       Servo[3].Set_Angle(-45);
     }
     if (__time_cnt >= 660)
     {
-        Servo[2].Set_Angle(-45);
+        Servo[1].Set_Angle(90); 
     }
 }
 
@@ -328,6 +335,7 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
             Chariot->Get_Cargo_Data();
             Chariot->ER08.Updata_Flag = 0;
             Chariot->Set_Control_Status(Chariot_Input_Cargo_Status);
+            Chariot->Servo[1].Set_Angle(-10);
             Set_Status(1);
         }
 
@@ -360,7 +368,7 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
 
         // 夹取货物
         // Get_Burry(Status[Now_Status_Serial].Time);
-	    Chariot->Burry_Input_Cargo_1(Status[Now_Status_Serial].Time);
+        Chariot->Burry_Input_Cargo_1(Status[Now_Status_Serial].Time);
 
         // 夹取完成后延时1s
         if (Status[Now_Status_Serial].Time >= 4000)
@@ -396,7 +404,7 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
                 // 放置货物
                 Chariot->Burry_Input_Cargo_2(Status[Now_Status_Serial].Time - 2000);
                 // 发送短信
-                Chariot->SIM900A.Sim900a_Send_Data((char *)Chariot->Now_Cargo.Code, (char *)Chariot->Now_Cargo.Phone_Number);
+                //Chariot->SIM900A.Sim900a_Send_Data((char *)Chariot->Now_Cargo.Code, (char *)Chariot->Now_Cargo.Phone_Number);
             }
         }
         // 整个操作5s后返回
@@ -412,6 +420,8 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
         Chariot->Chassis.Set_Target_Position_X(0);
         Chariot->Chassis.Set_Target_Position_Y(0);
         Chariot->Chassis.Set_Target_Angle(0);
+    
+	  Chariot->Midlle_Position(Status[Now_Status_Serial].Time);
 
         // 到达目标点 跳转到下一个状态
         // if (fabs(Chariot->Chassis.Get_Now_Position_X() - Chariot->Chassis.Get_Target_Position_X()) < 0.02 &&
@@ -430,35 +440,20 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
             // 取件返回
             if (Chariot->Get_Control_Status() == Chariot_Output_Cargo_Status)
             {
-                // 返回初始状态
-                Set_Status(0);
+                // 夹爪放件
+
+                if (Status[Now_Status_Serial].Time > 5000)
+                    Set_Status(0);                // 返回初始状态
+
             }
             // 放件返回
             else if (Chariot->Get_Control_Status() == Chariot_Input_Cargo_Status)
             {
-                // 夹爪放件
-
-                if (Status[Now_Status_Serial].Time > 5000)
-                    Set_Status(0);
+                Set_Status(0);
             }
         }
         break;
     }
-
-    // Chariot->Chassis.Position_Y_PID.Set_Target(Chariot->Chassis.Get_Target_Position_Y());
-    // Chariot->Chassis.Position_Y_PID.Set_Now(Chariot->Chassis.Get_Now_Position_Y());
-    // Chariot->Chassis.Position_Y_PID.TIM_Adjust_PeriodElapsedCallback();
-    // Chariot->Chassis.Set_Target_Velocity_Y(Chariot->Chassis.Position_Y_PID.Get_Out());
-
-    // Chariot->Chassis.Position_X_PID.Set_Target(Chariot->Chassis.Get_Target_Position_X());
-    // Chariot->Chassis.Position_X_PID.Set_Now(Chariot->Chassis.Get_Now_Position_X());
-    // Chariot->Chassis.Position_X_PID.TIM_Adjust_PeriodElapsedCallback();
-    // Chariot->Chassis.Set_Target_Velocity_X(-1.0f * Chariot->Chassis.Position_X_PID.Get_Out());
-
-    // Chariot->Chassis.Position_Yaw_PID.Set_Target(Chariot->Chassis.Get_Target_Angle());
-    // Chariot->Chassis.Position_Yaw_PID.Set_Now(Chariot->Chassis.Get_Now_Angle());
-    // Chariot->Chassis.Position_Yaw_PID.TIM_Adjust_PeriodElapsedCallback();
-    // Chariot->Chassis.Set_Target_Omega(Chariot->Chassis.Position_Yaw_PID.Get_Out());
 }
 
 /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/

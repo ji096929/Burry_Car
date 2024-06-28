@@ -85,25 +85,31 @@
         "name": "Device",
         "files": [
           {
+            "path": "../User/Device/dvc_imu.cpp"
+          },
+          {
             "path": "../User/Device/dvc_boardc_bmi088.cpp"
           },
           {
             "path": "../User/Device/dvc_dwt.cpp"
           },
           {
-            "path": "../User/Device/dvc_ER08.cpp"
-          },
-          {
-            "path": "../User/Device/dvc_imu.cpp"
-          },
-          {
             "path": "../User/Device/dvc_motor.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_ER08.cpp"
           },
           {
             "path": "../User/Device/dvc_SIM900A.cpp"
           },
           {
             "path": "../User/Device/dvc_Tjc011.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_cargo.cpp"
+          },
+          {
+            "path": "../User/Device/dvc.servo.cpp"
           }
         ],
         "folders": []

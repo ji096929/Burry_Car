@@ -56,8 +56,11 @@ void Class_ER08::Data_Process()
     
     memcpy(tel, tmp_buffer->tel, 11 * sizeof(uint8_t));
     memcpy(code, tmp_buffer->code,4 * sizeof(uint8_t));
-
-    Updata_Flag = 1;
+	
+    if(Pre_UART_Rx_Data.x!=Now_UART_Rx_Data.x && Pre_UART_Rx_Data.y!=Now_UART_Rx_Data.y)
+	Updata_Flag = 1;
+    
+    memcpy(&Pre_UART_Rx_Data,&Now_UART_Rx_Data,sizeof(Struct_ER08_UART_Data));
 }
 
 /**
