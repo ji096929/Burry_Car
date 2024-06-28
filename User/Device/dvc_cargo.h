@@ -16,10 +16,14 @@ struct Struct_Cargo
 
 class Class_Cargo_List
 {
+public:
+
     Struct_Cargo* First_Cargo;
 
     void Init();
     void Add_Cargo(uint8_t Position_X, uint8_t Position_Y, uint8_t Phone_Number[11], uint8_t Code[4]);
+    void Delete_Cargo(uint8_t Code[4]);
+    uint8_t Exist_Cargo(uint8_t Code[4]);
 };
 
 #endif

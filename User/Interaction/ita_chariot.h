@@ -65,7 +65,7 @@ public:
     Class_ER08 ER08;
     Class_SIM900A SIM900A;
     Class_Tjc011 Tjc011;
-    Struct_Cargo Cargo[10];
+    Class_Cargo_List Cargo_List;
     Struct_Cargo Now_Cargo;
     uint8_t Now_Cargo_Number;
     Class_Servo Servo[4];
@@ -76,6 +76,7 @@ public:
 
     void Get_Cargo_Data();
     uint8_t Jundge_Cargo();
+    void Output_Cargo();
 
     void Burry_Output_Cargo_1(uint16_t __time_cnt);
     void Burry_Output_Cargo_2(uint16_t __time_cnt);

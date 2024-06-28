@@ -7,7 +7,7 @@
     "buildMode": "fast|multhread",
     "showRepathOnLog": true,
     "threadNum": 12,
-    "rootDir": "d:\\emmble-2024\\Burry_Car_new\\MDK-ARM",
+    "rootDir": "d:\\emmble-2024\\Burry_Car\\MDK-ARM",
     "dumpPath": "..\\MDK-ARM\\infantry",
     "outDir": "..\\MDK-ARM\\infantry",
     "ram": 131072,
@@ -69,10 +69,12 @@
         "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c",
         "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c",
         "../User/Chariot/crt_chassis.cpp",
+        "../User/Device/dvc.servo.cpp",
         "../User/Device/dvc_ER08.cpp",
         "../User/Device/dvc_SIM900A.cpp",
         "../User/Device/dvc_Tjc011.cpp",
         "../User/Device/dvc_boardc_bmi088.cpp",
+        "../User/Device/dvc_cargo.cpp",
         "../User/Device/dvc_dwt.cpp",
         "../User/Device/dvc_imu.cpp",
         "../User/Device/dvc_motor.cpp",
@@ -96,7 +98,7 @@
         "startup_stm32f407xx.s"
     ],
     "sourceParams": {},
-    "sourceParamsMtime": 1711174690000,
+    "sourceParamsMtime": 1719574605702.8413,
     "options": {
         "version": 4,
         "beforeBuildTasks": [],
@@ -125,20 +127,20 @@
             "rw-base": "",
             "$disableOutputTask": true,
             "link-scatter": [
-                "\"d:/emmble-2024/Burry_Car_new/MDK-ARM/infantry/infantry.sct\""
+                "\"d:/emmble-2024/Burry_Car/MDK-ARM/infantry/infantry.sct\""
             ]
         }
     },
     "env": {
-        "workspaceFolder": "d:\\emmble-2024\\Burry_Car_new\\MDK-ARM",
+        "workspaceFolder": "d:\\emmble-2024\\Burry_Car\\MDK-ARM",
         "workspaceFolderBasename": "MDK-ARM",
-        "OutDir": "d:\\emmble-2024\\Burry_Car_new\\MDK-ARM\\..\\MDK-ARM\\infantry",
+        "OutDir": "d:\\emmble-2024\\Burry_Car\\MDK-ARM\\..\\MDK-ARM\\infantry",
         "OutDirRoot": "..\\MDK-ARM",
         "OutDirBase": "..\\MDK-ARM\\infantry",
         "ProjectName": "infantry",
         "ConfigName": "infantry",
-        "ProjectRoot": "d:\\emmble-2024\\Burry_Car_new\\MDK-ARM",
-        "ExecutableName": "d:\\emmble-2024\\Burry_Car_new\\MDK-ARM\\..\\MDK-ARM\\infantry\\infantry",
+        "ProjectRoot": "d:\\emmble-2024\\Burry_Car\\MDK-ARM",
+        "ExecutableName": "d:\\emmble-2024\\Burry_Car\\MDK-ARM\\..\\MDK-ARM\\infantry\\infantry",
         "SYS_Platform": "win32",
         "SYS_DirSep": "\\",
         "SYS_DirSeparator": "\\",
@@ -154,6 +156,6 @@
         "global": "a620fd78ce68cb35fdf638caa176e530",
         "c/cpp-compiler": "c0469c3553a1be63fcd593ea22151dac",
         "asm-compiler": "99914b932bd37a50b983c5e7c90ae93b",
-        "linker": "b1906465fdc4c4709f1f6d922249755c"
+        "linker": "5349a883b52459866cb8fc330510dd25"
     }
 }

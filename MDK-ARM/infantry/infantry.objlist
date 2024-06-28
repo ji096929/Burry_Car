@@ -25,10 +25,12 @@
 .\..\MDK-ARM\infantry\.obj\__\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.o
 .\..\MDK-ARM\infantry\.obj\__\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.o
 .\..\MDK-ARM\infantry\.obj\__\User\Chariot\crt_chassis.o
+.\..\MDK-ARM\infantry\.obj\__\User\Device\dvc.servo.o
 .\..\MDK-ARM\infantry\.obj\__\User\Device\dvc_ER08.o
 .\..\MDK-ARM\infantry\.obj\__\User\Device\dvc_SIM900A.o
 .\..\MDK-ARM\infantry\.obj\__\User\Device\dvc_Tjc011.o
 .\..\MDK-ARM\infantry\.obj\__\User\Device\dvc_boardc_bmi088.o
+.\..\MDK-ARM\infantry\.obj\__\User\Device\dvc_cargo.o
 .\..\MDK-ARM\infantry\.obj\__\User\Device\dvc_dwt.o
 .\..\MDK-ARM\infantry\.obj\__\User\Device\dvc_imu.o
 .\..\MDK-ARM\infantry\.obj\__\User\Device\dvc_motor.o

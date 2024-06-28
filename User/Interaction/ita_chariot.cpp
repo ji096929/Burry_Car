@@ -241,43 +241,27 @@ void Class_Chariot::Init()
     Chassis.Init();
 
     Now_Cargo_Number = 0;
-    memcpy(Cargo, 0, 10 * sizeof(Struct_Cargo));
+    memcpy(&Now_Cargo, 0, 10 * sizeof(Struct_Cargo));
 }
 
 void Class_Chariot::Get_Cargo_Data()
 {
-    if (Now_Cargo_Number >= 10)
-        return;
-    for (auto i = 0; i < Now_Cargo_Number; i++)
-    {
-        if (ER08.Get_x() == Cargo[i].Position_X && ER08.Get_y() == Cargo[i].Position_Y)
-        {
-            return;
-        }
-    }
-    Cargo[Now_Cargo_Number].Position_X = ER08.Get_x();
-    Cargo[Now_Cargo_Number].Position_Y = ER08.Get_y();
-    memcpy(Cargo[Now_Cargo_Number].Code, ER08.Get_code(), 4 * sizeof(uint8_t));
-    memcpy(Cargo[Now_Cargo_Number].Phone_Number, ER08.Get_tel(), 11 * sizeof(uint8_t));
-    memcpy(&Now_Cargo, &Cargo[Now_Cargo_Number], sizeof(Struct_Cargo));
+    Cargo_List.Add_Cargo(ER08.Get_x(), ER08.Get_y(), (uint8_t *)ER08.Get_tel(), (uint8_t *)ER08.Get_code());
+    Now_Cargo.Position_X = ER08.Get_x();
+    Now_Cargo.Position_Y = ER08.Get_y();
+    memcpy(Now_Cargo.Code, ER08.Get_code(), 4 * sizeof(uint8_t));
+    memcpy(Now_Cargo.Phone_Number, ER08.Get_tel(), 11 * sizeof(uint8_t));
     Now_Cargo_Number++;
 }
 
 uint8_t Class_Chariot::Jundge_Cargo()
 {
-    if (Now_Cargo_Number == 0)
-        return 0;
-    uint8_t tmp[4];
-    for (auto i = 0; i < Now_Cargo_Number; i++)
-    {
-        memcpy(tmp, Tjc011.Get_Input_Number(), 4 * sizeof(uint8_t));
-        if (memcmp(tmp, Cargo[i].Code, 4 * sizeof(uint8_t)) == 0)
-        {
-            memcpy(&Now_Cargo, &Cargo[i], sizeof(Struct_Cargo));
-            return 1;
-        }
-    }
-    return 0;
+    Cargo_List.Exist_Cargo((uint8_t *)Tjc011.Get_Input_Number());
+}
+
+void Class_Chariot::Output_Cargo()
+{
+    Cargo_List.Delete_Cargo(Now_Cargo.Code);
 }
 
 void Class_Chariot::Set_Control_Status(Enum_Chariot_Control_Status status)
@@ -332,6 +316,7 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
         // 获取货物信息 如果更新就获取信息 转到前往状态
         if (Chariot->ER08.Updata_Flag)
         {
+            //添加当前货物信息入链表
             Chariot->Get_Cargo_Data();
             Chariot->ER08.Updata_Flag = 0;
             Chariot->Set_Control_Status(Chariot_Input_Cargo_Status);
@@ -421,7 +406,7 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
         Chariot->Chassis.Set_Target_Position_Y(0);
         Chariot->Chassis.Set_Target_Angle(0);
     
-	  Chariot->Midlle_Position(Status[Now_Status_Serial].Time);
+	    Chariot->Midlle_Position(Status[Now_Status_Serial].Time);
 
         // 到达目标点 跳转到下一个状态
         // if (fabs(Chariot->Chassis.Get_Now_Position_X() - Chariot->Chassis.Get_Target_Position_X()) < 0.02 &&
@@ -440,8 +425,8 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
             // 取件返回
             if (Chariot->Get_Control_Status() == Chariot_Output_Cargo_Status)
             {
-                // 夹爪放件
-
+                //链表删除当前货物信息
+                Chariot->Output_Cargo();
                 if (Status[Now_Status_Serial].Time > 5000)
                     Set_Status(0);                // 返回初始状态
 
@@ -449,6 +434,7 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
             // 放件返回
             else if (Chariot->Get_Control_Status() == Chariot_Input_Cargo_Status)
             {
+
                 Set_Status(0);
             }
         }
