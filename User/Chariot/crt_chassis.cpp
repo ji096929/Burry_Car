@@ -62,10 +62,10 @@ void Class_Chassis::Init()
     Motor[3].Init(&htim5,&htim3,TIM_CHANNEL_1,TIM_CHANNEL_2,20000,2468);
 
     //电机PID初始化
-    Motor[0].Speed_PID.Init(1000, 0, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
-    Motor[1].Speed_PID.Init(1100, 0, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
-    Motor[2].Speed_PID.Init(1200, 0, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
-    Motor[3].Speed_PID.Init(2500, 0, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
+    Motor[0].Speed_PID.Init(1300, 1200, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
+    Motor[1].Speed_PID.Init(1300, 1200, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
+    Motor[2].Speed_PID.Init(1300, 1200, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
+    Motor[3].Speed_PID.Init(4500, 2200, 0, 0, 5000, 20000 , 0, 0, 0, 0.005, 0);
 }
 
 
@@ -205,12 +205,12 @@ void Class_Chassis::TIM_Calculate_PeriodElapsedCallback()
   Position_Y_PID.Set_Target(Target_Position_Y);
   Position_Y_PID.Set_Now(Now_Position_Y);
   Position_Y_PID.TIM_Adjust_PeriodElapsedCallback();
-  Target_Velocity_Y = Position_Y_PID.Get_Out();
+  //Target_Velocity_Y = Position_Y_PID.Get_Out();
 
   Position_X_PID.Set_Target(Target_Position_X);
   Position_X_PID.Set_Now(Now_Position_X);
   Position_X_PID.TIM_Adjust_PeriodElapsedCallback();
-  Target_Velocity_X = -1.0f * Position_X_PID.Get_Out();
+  //Target_Velocity_X = -1.0f * Position_X_PID.Get_Out();
 
 //    Position_Yaw_PID.Set_Target(Target_Angle);
 //    Position_Yaw_PID.Set_Now(Now_Angle);
