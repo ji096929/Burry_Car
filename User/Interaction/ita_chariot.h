@@ -23,6 +23,7 @@
 #include "dvc_SIM900A.h"
 #include "dvc_Tjc011.h"
 #include "dvc_cargo.h"
+#include "dvc.servo.h"
 /* Exported macros -----------------------------------------------------------*/
 class Class_Chariot;
 /* Exported types ------------------------------------------------------------*/
@@ -34,8 +35,8 @@ class Class_Chariot;
 enum Enum_Chariot_Control_Status 
 {
     Chariot_Disable_Status = 0,
-    Chariot_Put_Cargo_Status, 
-    Chariot_Get_Cargo_Status,
+    Chariot_Input_Cargo_Status, 
+    Chariot_Output_Cargo_Status,
 };
 
 
@@ -67,6 +68,7 @@ public:
     Struct_Cargo Cargo[10];
     Struct_Cargo Now_Cargo;
     uint8_t Now_Cargo_Number;
+    Class_Servo Servo[4];
     Enum_Chariot_Control_Status Control_Status = Chariot_Disable_Status;
     friend class Class_FSM_Chariot_Control;
 
@@ -74,6 +76,15 @@ public:
 
     void Get_Cargo_Data();
     uint8_t Jundge_Cargo();
+
+    void Burry_Output_Cargo_1(uint16_t __time_cnt);
+    void Burry_Output_Cargo_2(uint16_t __time_cnt);
+    void Burry_Input_Cargo_1(uint16_t __time_cnt);
+    void Burry_Input_Cargo_2(uint16_t __time_cnt);
+    void Midlle_Position(uint16_t __time_cnt);
+    void Scan_Burry(uint16_t __time_cnt);
+    
+    void Init_Position();
 
     void Set_Control_Status(Enum_Chariot_Control_Status status);
     Enum_Chariot_Control_Status Get_Control_Status();

@@ -29,6 +29,10 @@
 
 /* Function prototypes -------------------------------------------------------*/
 
+// 1号 tim14 ch1 
+// 2号 tim13 ch1 
+// 3号 tim5  ch3 
+// 4号 tim5  ch4 
 /**
  * @brief 底盘初始化
  *
@@ -49,11 +53,13 @@ void Class_Chassis::Init()
     Position_Y_PID.Init(10, 0, 0, 0, 0, 0 , 0, 0, 0, 0.005, 0);
     Position_Yaw_PID.Init(0.1, 0, 0, 0, 0, 0 , 0, 0, 0, 0.005, 0);
 
+
+
     //电机初始化
     Motor[0].Init(&htim12,&htim2,TIM_CHANNEL_1,TIM_CHANNEL_2,5000);
     Motor[1].Init(&htim8,&htim1,TIM_CHANNEL_1,TIM_CHANNEL_2,5000);
-    Motor[2].Init(&htim8,&htim4,TIM_CHANNEL_3,TIM_CHANNEL_4,5000,1340);
-    Motor[3].Init(&htim5,&htim3,TIM_CHANNEL_1,TIM_CHANNEL_2,5000);
+    Motor[2].Init(&htim8,&htim4,TIM_CHANNEL_3,TIM_CHANNEL_4,5000);
+    Motor[3].Init(&htim5,&htim3,TIM_CHANNEL_1,TIM_CHANNEL_2,20000);
 
     //电机PID初始化
     Motor[0].Speed_PID.Init(1000, 10, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);

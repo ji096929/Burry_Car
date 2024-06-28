@@ -94,27 +94,27 @@ void Task_Init()
     /********************************* 使能调度时钟 *********************************/
 
     // //启动定时器PWM输出
-    // HAL_TIM_PWM_Start(&htim14,TIM_CHANNEL_1);
-    // HAL_TIM_PWM_Start(&htim13,TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim14,TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim13,TIM_CHANNEL_1);
 
-    // HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_1);
-    // HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_2);
-    // HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_3);
-    // HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_4);
+    HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_3);
+    HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_4);
 
-    // HAL_TIM_PWM_Start(&htim12,TIM_CHANNEL_1);
-    // HAL_TIM_PWM_Start(&htim12,TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim12,TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim12,TIM_CHANNEL_2);
 
-    // HAL_TIM_PWM_Start(&htim8,TIM_CHANNEL_1);
-    // HAL_TIM_PWM_Start(&htim8,TIM_CHANNEL_2);
-    // HAL_TIM_PWM_Start(&htim8,TIM_CHANNEL_3);
-    // HAL_TIM_PWM_Start(&htim8,TIM_CHANNEL_4);
+    HAL_TIM_PWM_Start(&htim8,TIM_CHANNEL_1);
+    HAL_TIM_PWM_Start(&htim8,TIM_CHANNEL_2);
+    HAL_TIM_PWM_Start(&htim8,TIM_CHANNEL_3);
+    HAL_TIM_PWM_Start(&htim8,TIM_CHANNEL_4);
 
-    // //编码器初始化
-    // HAL_TIM_Encoder_Start(&htim1,TIM_CHANNEL_ALL);
-    // HAL_TIM_Encoder_Start(&htim2,TIM_CHANNEL_ALL);
-    // HAL_TIM_Encoder_Start(&htim3,TIM_CHANNEL_ALL);
-    // HAL_TIM_Encoder_Start(&htim4,TIM_CHANNEL_ALL);
+    //编码器初始化
+    HAL_TIM_Encoder_Start(&htim1,TIM_CHANNEL_ALL);
+    HAL_TIM_Encoder_Start(&htim2,TIM_CHANNEL_ALL);
+    HAL_TIM_Encoder_Start(&htim3,TIM_CHANNEL_ALL);
+    HAL_TIM_Encoder_Start(&htim4,TIM_CHANNEL_ALL);
 
    //启动定时器任务中断
    HAL_TIM_Base_Start_IT(&htim6);
@@ -129,18 +129,18 @@ void Task_Init()
 void TIM6_Task1ms_PeriodElapsedCallback()
 {
 	
-//    //任务状态机
-//	FSM_Chariot.Reload_TIM_Status_PeriodElapsedCallback();
+   //任务状态机
+	FSM_Chariot.Reload_TIM_Status_PeriodElapsedCallback();
 
-//    // IMU任务
-//    FSM_Chariot.Chariot->Chassis.IMU.TIM_Calculate_PeriodElapsedCallback();    
+   // IMU任务
+   FSM_Chariot.Chariot->Chassis.IMU.TIM_Calculate_PeriodElapsedCallback();    
 
-//    // 加速度积分计算位移
-//    Chariot.Chassis.TIM1ms_Chassis_Posture_PeriodElapsedCallback();
+   // 加速度积分计算位移
+   Chariot.Chassis.TIM1ms_Chassis_Posture_PeriodElapsedCallback();
 
-//    // 编码器微分计算转速
-//    for (auto i = 0; i < 4; i++)
-//        Chariot.Chassis.Motor[i].TIM1ms_Motor_Data_PeriodElapsedCallback();
+   // 编码器微分计算转速
+   for (auto i = 0; i < 4; i++)
+       Chariot.Chassis.Motor[i].TIM1ms_Motor_Data_PeriodElapsedCallback();
 
 }
 

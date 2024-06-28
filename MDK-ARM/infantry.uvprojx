@@ -591,9 +591,9 @@
               <FilePath>..\User\Device\dvc_cargo.cpp</FilePath>
             </File>
             <File>
-              <FileName>dvc_cargo.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\User\Device\dvc_cargo.h</FilePath>
+              <FileName>dvc.servo.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\Device\dvc.servo.cpp</FilePath>
             </File>
           </Files>
         </Group>

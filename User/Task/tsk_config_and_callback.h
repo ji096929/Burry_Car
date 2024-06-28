@@ -23,6 +23,10 @@
 
 /* Exported variables --------------------------------------------------------*/
 
+extern Class_Chariot Chariot;
+
+// 机器人控制对象
+extern Class_FSM_Chariot_Control FSM_Chariot;
 /* Exported function declarations --------------------------------------------*/
 
 void Task_Init();

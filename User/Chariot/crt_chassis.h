@@ -23,7 +23,7 @@
 #include "alg_slope.h"
 #include "dvc_motor.h"
 #include "dvc_imu.h"
-
+#include "tim.h"
 /* Exported macros -----------------------------------------------------------*/
 
 /* Exported types ------------------------------------------------------------*/
@@ -68,6 +68,7 @@ public:
 
     //四个电机
     Class_Motor Motor[4];
+
 
     //IMU
     Class_IMU IMU;

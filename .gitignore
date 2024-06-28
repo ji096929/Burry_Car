@@ -20,6 +20,9 @@
 *.jdebug.*
 *.axf
 *.exf
+*.json
+*.log
+*.lock
 
 !*.uvprojx
 !*.h
