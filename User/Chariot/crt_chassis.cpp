@@ -205,12 +205,12 @@ void Class_Chassis::TIM_Calculate_PeriodElapsedCallback()
   Position_Y_PID.Set_Target(Target_Position_Y);
   Position_Y_PID.Set_Now(Now_Position_Y);
   Position_Y_PID.TIM_Adjust_PeriodElapsedCallback();
-  //Target_Velocity_Y = Position_Y_PID.Get_Out();
+  Target_Velocity_Y = Position_Y_PID.Get_Out();
 
   Position_X_PID.Set_Target(Target_Position_X);
   Position_X_PID.Set_Now(Now_Position_X);
   Position_X_PID.TIM_Adjust_PeriodElapsedCallback();
-  //Target_Velocity_X = -1.0f * Position_X_PID.Get_Out();
+  Target_Velocity_X = -1.0f * Position_X_PID.Get_Out();
 
 //    Position_Yaw_PID.Set_Target(Target_Angle);
 //    Position_Yaw_PID.Set_Now(Now_Angle);
