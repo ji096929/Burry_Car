@@ -230,10 +230,10 @@ const float WHEEL_AZIMUTH[3] = {0.0f, atan2f(-FRONT_TO_FRONT_CENTER_DISTANCE, -F
 const float WHELL_DIAMETER = 0.06f;	
 
 //底盘半宽 单位m
-const float HALF_WIDTH = 0.246f;		
+const float HALF_WIDTH = 0.165f;		
 
 //底盘半长 单位m
-const float HALF_LENGTH = 0.165f;	
+const float HALF_LENGTH = 0.246f;	
 
 //转速转角速度	1 rpm = 2pi/60 rad/s 
 const float RPM2RAD = 0.104720f;				

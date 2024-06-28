@@ -45,6 +45,20 @@ void Class_Motor::Output()
     }
 }
 
+float Class_Motor::Filter(float new_data, float *data_record)
+{
+    float sum = 0.0;
+
+    for (uint8_t i = RECORD_NUM - 1; i > 0; i--) // 将现有数据后移一位
+    {
+        data_record[i] = data_record[i - 1];
+        sum += data_record[i - 1];
+    }
+    data_record[0] = new_data; // 第一位是新的数据
+    sum += new_data;
+
+    return sum / (RECORD_NUM * 1.0); // 返回均值
+}
 
 //电机编码器数据处理 电机速度计算
 void Class_Motor::TIM1ms_Motor_Data_PeriodElapsedCallback()
@@ -66,7 +80,8 @@ void Class_Motor::TIM1ms_Motor_Data_PeriodElapsedCallback()
         Encoder_Diff = Encoder_Diff + Max_Encoder_Sum;
     }
     //计算当前速度 脉冲差值除以编码器分辨率乘以2PI乘以1000（1ms的定时器任务）
-    Now_Speed = (float)Encoder_Diff/Encoder_Resolution*2.*PI*1000.;
+    Now_Speed = Filter((float)Encoder_Diff / Encoder_Resolution * 2. * PI * 1000., Record_Speed);
+    //Now_Speed = (float)Encoder_Diff/Encoder_Resolution*2.*PI*1000.;
 
     //模拟单圈编码器 0-Encoder_Resolution 计算圈数
     Encoder_Diff_Sum += Encoder_Diff;
@@ -91,7 +106,7 @@ void Class_Motor::TIM5ms_Motor_Calculate_PeriodElapsedCallback()
     Speed_PID.Set_Now(Now_Speed);
     Speed_PID.TIM_Adjust_PeriodElapsedCallback(); 
     //设置电机PWM
-    if(TIM_EncoderHandle == &htim4)
+    if(TIM_EncoderHandle == &htim4||TIM_EncoderHandle == &htim3)
     {
         Set_Compare(-1.0*(int16_t)Speed_PID.Get_Out());
     }

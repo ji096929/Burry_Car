@@ -128,6 +128,8 @@ void Task_Init()
  */
 void TIM6_Task1ms_PeriodElapsedCallback()
 {
+	static uint16_t cnt=0;
+	cnt++;
 	
    //任务状态机
 	//FSM_Chariot.Reload_TIM_Status_PeriodElapsedCallback();
@@ -138,9 +140,15 @@ void TIM6_Task1ms_PeriodElapsedCallback()
    // 加速度积分计算位移
    Chariot.Chassis.TIM1ms_Chassis_Posture_PeriodElapsedCallback();
 
-   // 编码器微分计算转速
+	 // 编码器微分计算转速
    for (auto i = 0; i < 4; i++)
        Chariot.Chassis.Motor[i].TIM1ms_Motor_Data_PeriodElapsedCallback();
+	 
+	
+   if(cnt==5)
+   {
+	  
+   }
 
 }
 
@@ -161,7 +169,7 @@ void TIM7_Task5ms_PeriodElapsedCallback()
 
    //四电机PID
    for(auto i = 0; i < 4; i++)
-       Chariot.Chassis.Motor[i].TIM5ms_Motor_Calculate_PeriodElapsedCallback();
+      Chariot.Chassis.Motor[i].TIM5ms_Motor_Calculate_PeriodElapsedCallback();
     
     /****************************** 驱动层回调函数 1ms *****************************************/ 
 

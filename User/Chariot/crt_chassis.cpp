@@ -56,16 +56,16 @@ void Class_Chassis::Init()
 
 
     //电机初始化
-    Motor[0].Init(&htim12,&htim2,TIM_CHANNEL_1,TIM_CHANNEL_2,5000);
-    Motor[1].Init(&htim8,&htim1,TIM_CHANNEL_1,TIM_CHANNEL_2,5000);
-    Motor[2].Init(&htim8,&htim4,TIM_CHANNEL_3,TIM_CHANNEL_4,5000);
-    Motor[3].Init(&htim5,&htim3,TIM_CHANNEL_1,TIM_CHANNEL_2,20000);
+    Motor[0].Init(&htim12, &htim2, TIM_CHANNEL_1, TIM_CHANNEL_2, 5000, 2484);
+    Motor[1].Init(&htim8, &htim1, TIM_CHANNEL_1, TIM_CHANNEL_2, 5000, 2471);
+    Motor[2].Init(&htim8,&htim4,TIM_CHANNEL_3,TIM_CHANNEL_4,5000,2494);
+    Motor[3].Init(&htim5,&htim3,TIM_CHANNEL_1,TIM_CHANNEL_2,20000,2468);
 
     //电机PID初始化
-    Motor[0].Speed_PID.Init(1000, 10, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
-    Motor[1].Speed_PID.Init(1000, 10, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
-    Motor[2].Speed_PID.Init(1200, 10, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
-    Motor[3].Speed_PID.Init(1200, 10, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
+    Motor[0].Speed_PID.Init(1000, 0, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
+    Motor[1].Speed_PID.Init(1100, 0, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
+    Motor[2].Speed_PID.Init(1200, 0, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
+    Motor[3].Speed_PID.Init(2500, 0, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
 }
 
 
@@ -205,12 +205,12 @@ void Class_Chassis::TIM_Calculate_PeriodElapsedCallback()
   Position_Y_PID.Set_Target(Target_Position_Y);
   Position_Y_PID.Set_Now(Now_Position_Y);
   Position_Y_PID.TIM_Adjust_PeriodElapsedCallback();
-  Target_Velocity_Y = Position_Y_PID.Get_Out();
+  //Target_Velocity_Y = Position_Y_PID.Get_Out();
 
   Position_X_PID.Set_Target(Target_Position_X);
   Position_X_PID.Set_Now(Now_Position_X);
   Position_X_PID.TIM_Adjust_PeriodElapsedCallback();
-  Target_Velocity_X = -1.0f * Position_X_PID.Get_Out();
+  //Target_Velocity_X = -1.0f * Position_X_PID.Get_Out();
 
 //    Position_Yaw_PID.Set_Target(Target_Angle);
 //    Position_Yaw_PID.Set_Now(Now_Angle);
@@ -281,7 +281,7 @@ void Class_Chassis::TIM1ms_Chassis_Posture_PeriodElapsedCallback()
 
     #ifdef ENCODER_NAVIGATE
 
-    //直接读取IMU yaw姿态
+//    //直接读取IMU yaw姿态
     Now_Angle = -IMU.Get_Angle_Yaw();
     Now_Omega = IMU.Get_Gyro_Yaw();
 

@@ -132,16 +132,16 @@ void Class_SIM900A::Sim900a_Send_Data(char *data, char *tel)
     ASCII_TO_Unicode(tel_1, (char *)tel_unicode);
 
     Sim900a_Send_Cmd((uint8_t *)"AT+CMGF=1\r\n");
-    HAL_Delay(100);
+    HAL_Delay(200);
     Sim900a_Send_Cmd((uint8_t *)"AT+CSCS=\"UCS2\"\r\n");
-    HAL_Delay(100);
+    HAL_Delay(200);
     Sim900a_Send_Cmd((uint8_t *)"AT+CSCA?\r\n");
-    HAL_Delay(100);
+    HAL_Delay(200);
     Sim900a_Send_Cmd((uint8_t *)"AT+CSMP=17,167,0,25\r\n");
-    HAL_Delay(100);
+    HAL_Delay(200);
     Sim900a_Send_Cmd((uint8_t *)"AT+CMGS=\"00310035003500310038003900380030003800320037\"\r\n");
-    HAL_Delay(100);
+    HAL_Delay(200);
     Sim900a_Send_Cmd((uint8_t *)"60A876849A8C8BC17801662F0032003000300030");
-    HAL_Delay(100);
+    HAL_Delay(200);
     Sim900a_Send_Cmd((uint8_t *)"\x1A");
 }

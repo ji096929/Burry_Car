@@ -3,6 +3,7 @@
 
 #include "alg_pid.h"
 #include "drv_tim.h"
+#define RECORD_NUM 50
 
 class Class_Motor
 {
@@ -11,7 +12,7 @@ class Class_Motor
         //电机 电机PID
         Class_PID Speed_PID;
 
-        void Init(TIM_HandleTypeDef *__TIM_PWMHandle, TIM_HandleTypeDef *__TIM_EncoderHandle, uint8_t __PWM_channel_1, uint8_t __PWM_channel_2, uint16_t __max_Compare, uint16_t __encoder_resolution = 2465, uint32_t __max_encoder_sum = 65535); 
+        void Init(TIM_HandleTypeDef *__TIM_PWMHandle, TIM_HandleTypeDef *__TIM_EncoderHandle, uint8_t __PWM_channel_1, uint8_t __PWM_channel_2, uint16_t __max_Compare, uint16_t __encoder_resolution, uint32_t __max_encoder_sum = 65535); 
 
         inline void Set_Target_Speed(float __Target_Speed);
         inline void Set_Target_Compare(uint16_t __Target_Compare);
@@ -19,7 +20,7 @@ class Class_Motor
         inline void Set_Max_Compare(uint16_t __Max_Compare);
 
         inline float Get_Now_Speed();
-
+        float Filter(float new_data, float *data_record);
         void TIM1ms_Motor_Data_PeriodElapsedCallback();
         void TIM5ms_Motor_Calculate_PeriodElapsedCallback();
 
@@ -41,6 +42,7 @@ class Class_Motor
         float Target_Speed;
         //电机 当前角速度 rad/s
         float Now_Speed;
+        float Record_Speed[RECORD_NUM];
         //电机 当前编码器值
         int32_t Now_Encoder;
         //电机 上次编码器值
