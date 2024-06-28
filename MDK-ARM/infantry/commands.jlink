@@ -1,0 +1,6 @@
+r
+halt
+loadfile "d:\emmble-2024\Burry_Car\MDK-ARM\infantry\infantry.hex"
+r
+go
+exit

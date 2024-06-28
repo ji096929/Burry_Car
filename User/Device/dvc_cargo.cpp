@@ -7,20 +7,16 @@ void Class_Cargo_List::Init()
 }
 
 
-void Class_Cargo_List::Add_Cargo(uint8_t Position_X, uint8_t Position_Y, uint8_t Phone_Number[11], uint8_t Code[4])
+void Class_Cargo_List::Add_Cargo(uint8_t Position_X, uint8_t Position_Y, uint8_t* Phone_Number, uint8_t* Code)
 {
     //头插法插入新节点
     Struct_Cargo* New_Cargo = new Struct_Cargo;
     New_Cargo->Position_X = Position_X;
     New_Cargo->Position_Y = Position_Y;
-    for (int i = 0; i < 11; i++)
-    {
-        New_Cargo->Phone_Number[i] = Phone_Number[i];
-    }
-    for (int i = 0; i < 4; i++)
-    {
-        New_Cargo->Code[i] = Code[i];
-    }
+
+    memcpy(New_Cargo->Phone_Number, Phone_Number, 11 );
+    memcpy(New_Cargo->Code, Code, 4 * sizeof(uint8_t));
+
     New_Cargo->Next_Cargo = First_Cargo;
     First_Cargo = New_Cargo;
 }
@@ -43,18 +39,18 @@ void Class_Cargo_List::Delete_Cargo(uint8_t Code[4])
 
 }
 
-uint8_t Class_Cargo_List::Exist_Cargo(uint8_t Code[4])
+Struct_Cargo* Class_Cargo_List::Exist_Cargo(uint8_t Code[4])
 {
     Struct_Cargo* p = First_Cargo;
     while (p != NULL)
     {
         if (p->Code[0] == Code[0] && p->Code[1] == Code[1] && p->Code[2] == Code[2] && p->Code[3] == Code[3])
         {
-            return 1;
+            return p;
         }
         p = p->Next_Cargo;
     }
-    return 0;
+    return NULL;
 }
 
 

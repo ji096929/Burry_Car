@@ -127,7 +127,7 @@ void Class_Chassis::Speed_Resolution(){
 
             Motor[0].Set_Target_Speed(- motor2_temp_rad);
             Motor[1].Set_Target_Speed(- motor1_temp_rad);
-            Motor[2].Set_Target_Speed(  motor4_temp_rad);
+            Motor[2].Set_Target_Speed(- motor4_temp_rad);
             Motor[3].Set_Target_Speed(- motor3_temp_rad);
     }   
 }
@@ -202,20 +202,20 @@ void Class_Chassis::Navigation_Calibrate()
 void Class_Chassis::TIM_Calculate_PeriodElapsedCallback()
 {
     //补充导航部分pid
-   Position_Y_PID.Set_Target(Target_Position_Y);
-   Position_Y_PID.Set_Now(Now_Position_Y);
-   Position_Y_PID.TIM_Adjust_PeriodElapsedCallback();
-   Target_Velocity_Y = Position_Y_PID.Get_Out();
+  Position_Y_PID.Set_Target(Target_Position_Y);
+  Position_Y_PID.Set_Now(Now_Position_Y);
+  Position_Y_PID.TIM_Adjust_PeriodElapsedCallback();
+  Target_Velocity_Y = Position_Y_PID.Get_Out();
 
-   Position_X_PID.Set_Target(Target_Position_X);
-   Position_X_PID.Set_Now(Now_Position_X);
-   Position_X_PID.TIM_Adjust_PeriodElapsedCallback();
-   Target_Velocity_X = -1.0 * Position_X_PID.Get_Out();
+  Position_X_PID.Set_Target(Target_Position_X);
+  Position_X_PID.Set_Now(Now_Position_X);
+  Position_X_PID.TIM_Adjust_PeriodElapsedCallback();
+  Target_Velocity_X = -1.0f * Position_X_PID.Get_Out();
 
-    Position_Yaw_PID.Set_Target(Target_Angle);
-    Position_Yaw_PID.Set_Now(Now_Angle);
-    Position_Yaw_PID.TIM_Adjust_PeriodElapsedCallback();
-    Target_Omega = Position_Yaw_PID.Get_Out();
+//    Position_Yaw_PID.Set_Target(Target_Angle);
+//    Position_Yaw_PID.Set_Now(Now_Angle);
+//    Position_Yaw_PID.TIM_Adjust_PeriodElapsedCallback();
+//    Target_Omega = Position_Yaw_PID.Get_Out();
 
     #ifdef SPEED_SLOPE
 
@@ -288,7 +288,7 @@ void Class_Chassis::TIM1ms_Chassis_Posture_PeriodElapsedCallback()
     //  补充导航部分
     float motor1_temp_rad = -Motor[0].Get_Now_Speed();
     float motor2_temp_rad = -Motor[1].Get_Now_Speed();
-    float motor3_temp_rad =  Motor[2].Get_Now_Speed();
+    float motor3_temp_rad = -Motor[2].Get_Now_Speed();
     float motor4_temp_rad = -Motor[3].Get_Now_Speed();
 
     // 将角速度转换回线速度

@@ -23,7 +23,7 @@ public:
     inline char *Get_tel(void);
     inline char *Get_code(void);
 
-    uint8_t Updata_Flag=0;
+    int8_t Updata_Flag=0;
 
 protected:
     // 绑定的UART

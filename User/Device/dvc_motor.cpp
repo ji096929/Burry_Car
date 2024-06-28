@@ -89,9 +89,16 @@ void Class_Motor::TIM5ms_Motor_Calculate_PeriodElapsedCallback()
     //计算电机速度PID
     Speed_PID.Set_Target(Target_Speed);
     Speed_PID.Set_Now(Now_Speed);
-    Speed_PID.TIM_Adjust_PeriodElapsedCallback();
+    Speed_PID.TIM_Adjust_PeriodElapsedCallback(); 
     //设置电机PWM
-    Set_Compare((int16_t)Speed_PID.Get_Out());
+    if(TIM_EncoderHandle == &htim4)
+    {
+        Set_Compare(-1.0*(int16_t)Speed_PID.Get_Out());
+    }
+    else
+    {
+        Set_Compare((int16_t)Speed_PID.Get_Out());
+    }
     //输出电机PWM
     Output();
 }

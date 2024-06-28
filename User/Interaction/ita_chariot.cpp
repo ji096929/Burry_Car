@@ -227,25 +227,31 @@ void Class_Chariot::Init()
     Tjc011.Init(&huart2);
 
     // 舵机初始化
-    Servo[0].Init(&htim14, TIM_CHANNEL_1);
-    Servo[1].Init(&htim13, TIM_CHANNEL_1);
-    Servo[2].Init(&htim5, TIM_CHANNEL_3);
-    Servo[3].Init(&htim5, TIM_CHANNEL_4);
+//    Servo[0].Init(&htim14, TIM_CHANNEL_1);
+//    Servo[1].Init(&htim13, TIM_CHANNEL_1);
+//    Servo[2].Init(&htim5, TIM_CHANNEL_3);
+//    Servo[3].Init(&htim5, TIM_CHANNEL_4);
 
-    Servo[0].Set_Angle(20);
-    Servo[1].Set_Angle(0);
-    Servo[2].Set_Angle(60);
-    Servo[3].Set_Angle(30);
+//    Servo[0].Set_Angle(20);
+//    Servo[1].Set_Angle(0);
+//    Servo[2].Set_Angle(60);
+//    Servo[3].Set_Angle(30);
 
     Chassis.IMU.Init();
     Chassis.Init();
 
+    Cargo_List.Init();
+
     Now_Cargo_Number = 0;
-    memcpy(&Now_Cargo, 0, 10 * sizeof(Struct_Cargo));
+    //memset(&Now_Cargo, 0, 10 * sizeof(Struct_Cargo));
 }
 
 void Class_Chariot::Get_Cargo_Data()
 {
+    if(Cargo_List.Exist_Cargo((uint8_t *)ER08.Get_code())!=NULL)
+    {
+        return;
+    }
     Cargo_List.Add_Cargo(ER08.Get_x(), ER08.Get_y(), (uint8_t *)ER08.Get_tel(), (uint8_t *)ER08.Get_code());
     Now_Cargo.Position_X = ER08.Get_x();
     Now_Cargo.Position_Y = ER08.Get_y();
@@ -256,12 +262,19 @@ void Class_Chariot::Get_Cargo_Data()
 
 uint8_t Class_Chariot::Jundge_Cargo()
 {
-    Cargo_List.Exist_Cargo((uint8_t *)Tjc011.Get_Input_Number());
+    Struct_Cargo *tmp = Cargo_List.Exist_Cargo((uint8_t *)Tjc011.Get_Input_Number());
+    if(tmp!=NULL)
+    {
+        memcpy(&Now_Cargo, tmp, sizeof(Struct_Cargo));
+        return 1;
+    }
+    return 0;
 }
 
 void Class_Chariot::Output_Cargo()
 {
     Cargo_List.Delete_Cargo(Now_Cargo.Code);
+    Now_Cargo_Number--;
 }
 
 void Class_Chariot::Set_Control_Status(Enum_Chariot_Control_Status status)
@@ -327,32 +340,19 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
         // 获取取件码信息 如果更新就获取信息 转到取件状态
         if (Chariot->Tjc011.Input_data_Flag)
         {
-            if (Chariot->Jundge_Cargo()) // 如果取件码正确 就转到前往状态
+            if (Chariot->Jundge_Cargo()) // 如果取件码正确 并且更新当前货物信息 转到前往状态
             {
                 Chariot->Set_Control_Status(Chariot_Output_Cargo_Status);
                 Set_Status(1);
             }
             Chariot->Tjc011.Input_data_Flag = 0;
         }
-
-        __HAL_TIM_SET_COMPARE(&htim5, TIM_CHANNEL_1, 0);
-        __HAL_TIM_SET_COMPARE(&htim5, TIM_CHANNEL_2, 0);
-
-        __HAL_TIM_SET_COMPARE(&htim12, TIM_CHANNEL_1, 0);
-        __HAL_TIM_SET_COMPARE(&htim12, TIM_CHANNEL_1, 0);
-
-        __HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_1, 0);
-        __HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_2, 0);
-
-        __HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_3, 0);
-        __HAL_TIM_SET_COMPARE(&htim8, TIM_CHANNEL_4, 0);
     }
     break;
     case 1:
         /*导航前往状态*/
 
         // 夹取货物
-        // Get_Burry(Status[Now_Status_Serial].Time);
         Chariot->Burry_Input_Cargo_1(Status[Now_Status_Serial].Time);
 
         // 夹取完成后延时1s
@@ -364,11 +364,11 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
             Chariot->Chassis.Set_Target_Angle(0);
 
             // 到达目标点 跳转到下一个状态
-            // if (fabs(Chariot->Chassis.Get_Now_Position_X() - Chariot->Chassis.Get_Target_Position_X()) < 0.02 &&
-            //     (fabs(Chariot->Chassis.Get_Now_Position_Y() - Chariot->Chassis.Get_Target_Position_Y()) < 0.02))
-            // {
-            //     Set_Status(2);
-            // }
+            if (fabs(Chariot->Chassis.Get_Now_Position_X() - Chariot->Chassis.Get_Target_Position_X()) < 0.02 &&
+                (fabs(Chariot->Chassis.Get_Now_Position_Y() - Chariot->Chassis.Get_Target_Position_Y()) < 0.02))
+            {
+                Set_Status(2);
+            }
             Set_Status(2);
         }
         break;
@@ -409,11 +409,11 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
 	    Chariot->Midlle_Position(Status[Now_Status_Serial].Time);
 
         // 到达目标点 跳转到下一个状态
-        // if (fabs(Chariot->Chassis.Get_Now_Position_X() - Chariot->Chassis.Get_Target_Position_X()) < 0.02 &&
-        //     (fabs(Chariot->Chassis.Get_Now_Position_Y() - Chariot->Chassis.Get_Target_Position_Y()) < 0.02))
-        // {
-        //     Set_Status(4);
-        // }
+        if (fabs(Chariot->Chassis.Get_Now_Position_X() - Chariot->Chassis.Get_Target_Position_X()) < 0.02 &&
+            (fabs(Chariot->Chassis.Get_Now_Position_Y() - Chariot->Chassis.Get_Target_Position_Y()) < 0.02))
+        {
+            Set_Status(4);
+        }
         Set_Status(4);
         break;
 
@@ -429,12 +429,10 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
                 Chariot->Output_Cargo();
                 if (Status[Now_Status_Serial].Time > 5000)
                     Set_Status(0);                // 返回初始状态
-
             }
             // 放件返回
             else if (Chariot->Get_Control_Status() == Chariot_Input_Cargo_Status)
             {
-
                 Set_Status(0);
             }
         }

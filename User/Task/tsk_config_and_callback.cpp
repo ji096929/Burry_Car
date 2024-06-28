@@ -28,7 +28,7 @@ uint16_t Motor_Now_Encoder[4];
 uint16_t Motor_Direction[4];
 uint16_t Motor_Pre_Encoder[4];
 
-uint8_t buffer1[18];
+uint8_t buffer1[19];
 uint8_t buffer2[4];
 
 Class_Chariot Chariot;
@@ -77,7 +77,7 @@ void Task_Init()
     SPI_Init(&hspi1,SPI1_IMU_Task_Callback);
 
     UART_Init(&huart1, ER08_UART1_Callback, 19);
-//    HAL_UART_Receive_IT(&huart1, buffer1, 17);
+    //HAL_UART_Receive_IT(&huart1, buffer1, 19);
 //	HAL_UART_Receive_IT(&huart2, buffer2, 4);
     UART_Init(&huart2, Tjc011_UART2_Callback, 20);
     UART_Init(&huart5, SIM_UART5_Callback, 20);
@@ -130,7 +130,7 @@ void TIM6_Task1ms_PeriodElapsedCallback()
 {
 	
    //任务状态机
-	FSM_Chariot.Reload_TIM_Status_PeriodElapsedCallback();
+	//FSM_Chariot.Reload_TIM_Status_PeriodElapsedCallback();
 
    // IMU任务
    FSM_Chariot.Chariot->Chassis.IMU.TIM_Calculate_PeriodElapsedCallback();    
@@ -156,17 +156,17 @@ void TIM7_Task5ms_PeriodElapsedCallback()
 	cnt++;
     /****************************** 交互层回调函数 1ms *****************************************/
     
-//    //底盘速度解算
-//    Chariot.Chassis.TIM_Calculate_PeriodElapsedCallback();
+   //底盘速度解算
+   Chariot.Chassis.TIM_Calculate_PeriodElapsedCallback();
 
-//    //四电机PID
-//    for(auto i = 0; i < 4; i++)
-//        Chariot.Chassis.Motor[i].TIM5ms_Motor_Calculate_PeriodElapsedCallback();
-//    
+   //四电机PID
+   for(auto i = 0; i < 4; i++)
+       Chariot.Chassis.Motor[i].TIM5ms_Motor_Calculate_PeriodElapsedCallback();
+    
     /****************************** 驱动层回调函数 1ms *****************************************/ 
 
     //统一打包发送
-    TIM_UART_PeriodElapsedCallback();
+    //TIM_UART_PeriodElapsedCallback();
 	
 }
 
@@ -184,8 +184,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     if (huart->Instance == USART1)
     {
         //ER08_UART1_Callback(huart->pRxBuffPtr, huart->RxXferCount);
-	    ER08_UART1_Callback(buffer1,17);
-        HAL_UART_Receive_IT(&huart1, (uint8_t *)buffer1, 17);
+	    ER08_UART1_Callback(buffer1,19);
+        HAL_UART_Receive_IT(&huart1, (uint8_t *)buffer1, 19);
         // 处理USART1接收到的数据
     }
     else if (huart->Instance == USART2)
