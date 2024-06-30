@@ -20,7 +20,7 @@ public:
     void Sim900a_Send_Cmd(uint8_t *cmd);
     void Sim900a_Send_Data(char *data,  char *tel);
     void UART_RxCpltCallback(uint8_t *Rx_Data);
-
+Struct_UART_Manage_Object *UART_Manage_Object;
 protected:
     char * Pickup_Code[4];
 };

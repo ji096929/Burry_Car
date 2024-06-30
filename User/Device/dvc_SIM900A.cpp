@@ -125,23 +125,26 @@ void Class_SIM900A::Sim900a_Send_Data(char *data, char *tel)
     char tel_unicode[100] = {0};
     char data_unicode[100] = {0};
     char tel_1[11] = {0};
-    uint8_t temp[200] = {0};
+    char temp[200] = {0};
     memcpy(tel_1, tel, 11);
 
     ASCII_TO_Unicode(data, (char *)data_unicode);
     ASCII_TO_Unicode(tel_1, (char *)tel_unicode);
 
     Sim900a_Send_Cmd((uint8_t *)"AT+CMGF=1\r\n");
-    HAL_Delay(200);
+    HAL_Delay(500);
     Sim900a_Send_Cmd((uint8_t *)"AT+CSCS=\"UCS2\"\r\n");
-    HAL_Delay(200);
+    HAL_Delay(500);
     Sim900a_Send_Cmd((uint8_t *)"AT+CSCA?\r\n");
-    HAL_Delay(200);
+    HAL_Delay(500);
     Sim900a_Send_Cmd((uint8_t *)"AT+CSMP=17,167,0,25\r\n");
-    HAL_Delay(200);
-    Sim900a_Send_Cmd((uint8_t *)"AT+CMGS=\"00310035003500310038003900380030003800320037\"\r\n");
-    HAL_Delay(200);
-    Sim900a_Send_Cmd((uint8_t *)"60A876849A8C8BC17801662F0032003000300030");
-    HAL_Delay(200);
+    HAL_Delay(500);
+    sprintf(temp, "AT+CMGS=\"%s\"\r\n", tel_unicode);
+    Sim900a_Send_Cmd((uint8_t *)temp);
+    memset(temp, 0, sizeof(temp));
+    HAL_Delay(500);
+    sprintf(temp, "60A876849A8C8BC17801662F%s\r\n", data_unicode);
+    Sim900a_Send_Cmd((uint8_t *)temp);
+    HAL_Delay(500);
     Sim900a_Send_Cmd((uint8_t *)"\x1A");
 }

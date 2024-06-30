@@ -28,7 +28,7 @@ uint16_t Motor_Now_Encoder[4];
 uint16_t Motor_Direction[4];
 uint16_t Motor_Pre_Encoder[4];
 
-uint8_t buffer1[19];
+//uint8_t buffer1[19];
 uint8_t buffer2[4];
 
 Class_Chariot Chariot;
@@ -192,9 +192,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     if (huart->Instance == USART1)
     {
         //ER08_UART1_Callback(huart->pRxBuffPtr, huart->RxXferCount);
-	    ER08_UART1_Callback(buffer1,19);
-        HAL_UART_Receive_IT(&huart1, (uint8_t *)buffer1, 19);
-        // 处理USART1接收到的数据
+	        ER08_UART1_Callback(Chariot.ER08.UART_Manage_Object->Rx_Buffer, 19);
+            HAL_UART_Receive_IT(&huart1, Chariot.ER08.UART_Manage_Object->Rx_Buffer, 19);
+            // 处理USART1接收到的数据
     }
     else if (huart->Instance == USART2)
     {

@@ -22,12 +22,12 @@ public:
     inline uint8_t Get_y(void);
     inline char *Get_tel(void);
     inline char *Get_code(void);
-
+    Struct_UART_Manage_Object *UART_Manage_Object;
     int8_t Updata_Flag=0;
 
 protected:
     // 绑定的UART
-    Struct_UART_Manage_Object *UART_Manage_Object;
+
 
     Struct_ER08_UART_Data Now_UART_Rx_Data;
     Struct_ER08_UART_Data Pre_UART_Rx_Data;
