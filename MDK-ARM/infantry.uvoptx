@@ -176,25 +176,9 @@
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>178</LineNumber>
+          <LineNumber>335</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134240062</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\User\Task\tsk_config_and_callback.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\infantry\../User/Task/tsk_config_and_callback.cpp\178</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>320</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134248326</Address>
+          <Address>134248744</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -203,7 +187,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\User\Interaction\ita_chariot.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\infantry\../User/Interaction/ita_chariot.cpp\320</Expression>
+          <Expression>\\infantry\../User/Interaction/ita_chariot.cpp\335</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

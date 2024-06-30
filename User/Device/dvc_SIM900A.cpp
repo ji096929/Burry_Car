@@ -143,7 +143,7 @@ void Class_SIM900A::Sim900a_Send_Data(char *data, char *tel)
     Sim900a_Send_Cmd((uint8_t *)temp);
     memset(temp, 0, sizeof(temp));
     HAL_Delay(500);
-    sprintf(temp, "60A876849A8C8BC17801662F%s\r\n", data_unicode);
+    sprintf(temp, "60A876849A8C8BC17801662F%s", data_unicode);
     Sim900a_Send_Cmd((uint8_t *)temp);
     HAL_Delay(500);
     Sim900a_Send_Cmd((uint8_t *)"\x1A");

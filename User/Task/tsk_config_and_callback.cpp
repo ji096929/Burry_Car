@@ -132,7 +132,7 @@ void TIM6_Task1ms_PeriodElapsedCallback()
 	cnt++;
 	
    //任务状态机
-	//FSM_Chariot.Reload_TIM_Status_PeriodElapsedCallback();
+	FSM_Chariot.Reload_TIM_Status_PeriodElapsedCallback();
 
    // IMU任务
    FSM_Chariot.Chariot->Chassis.IMU.TIM_Calculate_PeriodElapsedCallback();    
@@ -168,8 +168,8 @@ void TIM7_Task5ms_PeriodElapsedCallback()
    Chariot.Chassis.TIM_Calculate_PeriodElapsedCallback();
 
    //四电机PID
-   for(auto i = 0; i < 4; i++)
-      Chariot.Chassis.Motor[i].TIM5ms_Motor_Calculate_PeriodElapsedCallback();
+//   for(auto i = 0; i < 4; i++)
+//      Chariot.Chassis.Motor[i].TIM5ms_Motor_Calculate_PeriodElapsedCallback();
     
     /****************************** 驱动层回调函数 1ms *****************************************/ 
 
