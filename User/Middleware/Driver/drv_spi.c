@@ -84,7 +84,7 @@ uint8_t SPI_Send_Receive_Data(SPI_HandleTypeDef *hspi, GPIO_TypeDef* GPIOx, uint
 {
     //HAL_GPIO_TogglePin(GPIOx, GPIO_Pin);
 
-    if (hspi->Instance == SPI1)
+     if (hspi->Instance == SPI1)
     {
         SPI1_Manage_Object.Now_GPIOx = GPIOx;
         SPI1_Manage_Object.Now_GPIO_Pin = GPIO_Pin;

@@ -165,10 +165,6 @@ void Class_Chariot::Burry_Output_Cargo_1(uint16_t __time_cnt)
     Servo[1].Set_Angle(-45);
     Servo[3].Set_Angle(30);
     Servo[2].Set_Angle(-75);
-    if (__time_cnt >= 2000)
-    {
-        Servo[0].Set_Angle(-5);
-    }
 }
 
 void Class_Chariot::Burry_Output_Cargo_2(uint16_t __time_cnt)
@@ -183,6 +179,7 @@ void Class_Chariot::Midlle_Position(uint16_t __time_cnt)
 {
     if (__time_cnt >= 50)
     {
+        Servo[0].Set_Angle(-5);
         Servo[2].Set_Angle(-45);
     }
     if (__time_cnt >= 360)
@@ -227,15 +224,15 @@ void Class_Chariot::Init()
     Tjc011.Init(&huart2);
 
     // 舵机初始化
-//    Servo[0].Init(&htim14, TIM_CHANNEL_1);
-//    Servo[1].Init(&htim13, TIM_CHANNEL_1);
-//    Servo[2].Init(&htim5, TIM_CHANNEL_3);
-//    Servo[3].Init(&htim5, TIM_CHANNEL_4);
+   Servo[0].Init(&htim14, TIM_CHANNEL_1);
+   Servo[1].Init(&htim13, TIM_CHANNEL_1);
+   Servo[2].Init(&htim5, TIM_CHANNEL_3);
+   Servo[3].Init(&htim5, TIM_CHANNEL_4);
 
-//    Servo[0].Set_Angle(20);
-//    Servo[1].Set_Angle(0);
-//    Servo[2].Set_Angle(60);
-//    Servo[3].Set_Angle(30);
+   Servo[0].Set_Angle(20);
+   Servo[1].Set_Angle(0);
+   Servo[2].Set_Angle(60);
+   Servo[3].Set_Angle(30);
 
     Chassis.IMU.Init();
     Chassis.Init();
@@ -331,7 +328,6 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
         {
             //添加当前货物信息入链表
             Chariot->Get_Cargo_Data();
-            Chariot->ER08.Updata_Flag = 0;
             Chariot->Set_Control_Status(Chariot_Input_Cargo_Status);
             Chariot->Servo[1].Set_Angle(-10);
             Set_Status(1);
@@ -359,8 +355,8 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
         if (Status[Now_Status_Serial].Time >= 4000)
         {
             // 设置目标点
-            Chariot->Chassis.Set_Target_Position_X(Chariot->Now_Cargo.Position_X);
-            Chariot->Chassis.Set_Target_Position_Y(Chariot->Now_Cargo.Position_Y);
+            Chariot->Chassis.Set_Target_Position_X(-1.0f*(Chariot->Now_Cargo.Position_X-48));
+            Chariot->Chassis.Set_Target_Position_Y(-1.0f*(Chariot->Now_Cargo.Position_Y-48));          
             Chariot->Chassis.Set_Target_Angle(0);
 
             // 到达目标点 跳转到下一个状态
@@ -369,31 +365,34 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
             {
                 Set_Status(2);
             }
-            Set_Status(2);
+            // if(Status[Now_Status_Serial].Time > 10000)
+            // {
+            //     Set_Status(2);
+            // }
         }
         break;
     case 2:
         /*放件/取件状态*/
         // 先延时1s
-        if (Status[Now_Status_Serial].Time >= 2000)
+        if (Status[Now_Status_Serial].Time >= 4000)
         {
             // 取件
             if (Chariot->Get_Control_Status() == Chariot_Output_Cargo_Status)
             {
                 // 夹取货柜的货物
-                Chariot->Burry_Output_Cargo_1(Status[Now_Status_Serial].Time - 2000);
+                Chariot->Burry_Output_Cargo_1(Status[Now_Status_Serial].Time - 4000);
             }
             // 放件
             else if (Chariot->Get_Control_Status() == Chariot_Input_Cargo_Status)
             {
                 // 放置货物
-                Chariot->Burry_Input_Cargo_2(Status[Now_Status_Serial].Time - 2000);
+                Chariot->Burry_Input_Cargo_2(Status[Now_Status_Serial].Time - 4000);
                 // 发送短信
-                //Chariot->SIM900A.Sim900a_Send_Data((char *)Chariot->Now_Cargo.Code, (char *)Chariot->Now_Cargo.Phone_Number);
+                Chariot->SIM900A.Sim900a_Send_Data((char *)Chariot->Now_Cargo.Code, (char *)Chariot->Now_Cargo.Phone_Number);
             }
         }
         // 整个操作5s后返回
-        if (Status[Now_Status_Serial].Time > 5000)
+        if (Status[Now_Status_Serial].Time > 8000)
         {
             Set_Status(3);
         }
@@ -414,13 +413,12 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
         {
             Set_Status(4);
         }
-        Set_Status(4);
         break;
 
     case 4:
         /*返回类型判断状态*/
         // 先延时1s
-        if (Status[Now_Status_Serial].Time >= 1000)
+        if (Status[Now_Status_Serial].Time >= 2000)
         {
             // 取件返回
             if (Chariot->Get_Control_Status() == Chariot_Output_Cargo_Status)

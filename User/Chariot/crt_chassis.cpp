@@ -212,10 +212,10 @@ void Class_Chassis::TIM_Calculate_PeriodElapsedCallback()
   Position_X_PID.TIM_Adjust_PeriodElapsedCallback();
   Target_Velocity_X = -1.0f * Position_X_PID.Get_Out();
 
-//    Position_Yaw_PID.Set_Target(Target_Angle);
-//    Position_Yaw_PID.Set_Now(Now_Angle);
-//    Position_Yaw_PID.TIM_Adjust_PeriodElapsedCallback();
-//    Target_Omega = Position_Yaw_PID.Get_Out();
+   Position_Yaw_PID.Set_Target(Target_Angle);
+   Position_Yaw_PID.Set_Now(Now_Angle);
+   Position_Yaw_PID.TIM_Adjust_PeriodElapsedCallback();
+   Target_Omega = Position_Yaw_PID.Get_Out();
 
     #ifdef SPEED_SLOPE
 

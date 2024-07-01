@@ -3,7 +3,7 @@
     "target": "infantry",
     "toolchain": "AC5",
     "toolchainLocation": "D:\\Keil5\\keil5_anzhuangbao\\ARM\\ARMCC",
-    "toolchainCfgFile": "c:\\Users\\enze\\.vscode\\extensions\\cl.eide-3.18.0\\res\\data\\models\\win32/arm.v5.model.json",
+    "toolchainCfgFile": "c:\\Users\\enze\\.vscode\\extensions\\cl.eide-3.18.1\\res\\data\\models\\win32/arm.v5.model.json",
     "buildMode": "fast|multhread",
     "showRepathOnLog": true,
     "threadNum": 12,
