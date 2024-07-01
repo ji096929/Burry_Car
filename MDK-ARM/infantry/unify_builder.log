@@ -327,3 +327,38 @@ command:
 [2024-07-01 20:01:52]	[done]
 	build successfully !
 
+[2024-07-01 20:30:39]	compilation failed at : "d:\emmble-2024\Burry_Car\User\Interaction\ita_chariot.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I. -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../Core/Inc -I../User/Congfig -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -O1 --split_sections -W --cpp11 -g -o .\..\MDK-ARM\infantry\.obj\__\User\Interaction\ita_chariot.o --no_depend_system_headers --depend .\..\MDK-ARM\infantry\.obj\__\User\Interaction\ita_chariot.d .\..\User\Interaction\ita_chariot.cpp
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Interaction\ita_chariot.cpp", line 227: Error:  #29: expected an expression
+  <<<<<<< HEAD
+  ^
+".\..\User\Interaction\ita_chariot.cpp", line 232: Error:  #29: expected an expression
+  =======
+  ^
+".\..\User\Interaction\ita_chariot.cpp", line 237: Error:  #29: expected an expression
+  >>>>>>> 5e98795bdbe36645d776c578737e284b4ed090e4
+  ^
+".\..\User\Interaction\ita_chariot.cpp", line 237: Error:  #30: floating constant is out of range
+  >>>>>>> 5e98795bdbe36645d776c578737e284b4ed090e4
+          ^
+".\..\User\Interaction\ita_chariot.cpp", line 338: Error:  #29: expected an expression
+  <<<<<<< HEAD
+  ^
+".\..\User\Interaction\ita_chariot.cpp", line 342: Error:  #29: expected an expression
+  >>>>>>> 5e98795bdbe36645d776c578737e284b4ed090e4
+  ^
+".\..\User\Interaction\ita_chariot.cpp", line 342: Error:  #30: floating constant is out of range
+  >>>>>>> 5e98795bdbe36645d776c578737e284b4ed090e4
+          ^
+.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 7 errors
+
+[2024-07-01 20:32:41]	[done]
+	build successfully !
+
+[2024-07-01 20:33:54]	[done]
+	build successfully !
+

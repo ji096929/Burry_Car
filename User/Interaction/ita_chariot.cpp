@@ -228,6 +228,10 @@ void Class_Chariot::Init()
    Servo[1].Init(&htim13, TIM_CHANNEL_1);
    Servo[2].Init(&htim5, TIM_CHANNEL_3);
    Servo[3].Init(&htim5, TIM_CHANNEL_4);
+    Servo[0].Init(&htim14, TIM_CHANNEL_1);
+    Servo[1].Init(&htim13, TIM_CHANNEL_1);
+    Servo[2].Init(&htim5, TIM_CHANNEL_3);
+    Servo[3].Init(&htim5, TIM_CHANNEL_4);
 
    Servo[0].Set_Angle(20);
    Servo[1].Set_Angle(0);
@@ -328,6 +332,8 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
         {
             //添加当前货物信息入链表
             Chariot->Get_Cargo_Data();
+            Chariot->ER08.Updata_Flag = 0;
+		  Chariot->SIM900A.Sim900a_Send_Data((char *)Chariot->Now_Cargo.Code, (char *)Chariot->Now_Cargo.Phone_Number);
             Chariot->Set_Control_Status(Chariot_Input_Cargo_Status);
             Chariot->Servo[1].Set_Angle(-10);
             Set_Status(1);

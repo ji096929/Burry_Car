@@ -28,6 +28,7 @@ Struct_UART_Manage_Object UART6_Manage_Object = {0};
 Struct_UART_Manage_Object UART7_Manage_Object = {0};
 Struct_UART_Manage_Object UART8_Manage_Object = {0};
 
+uint8_t buffer1[19];
 /* Private function declarations ---------------------------------------------*/
 
 /* function prototypes -------------------------------------------------------*/
@@ -73,7 +74,7 @@ void UART_Init(UART_HandleTypeDef *huart, UART_Call_Back Callback_Function, uint
         UART5_Manage_Object.UART_Handler = huart;
         UART5_Manage_Object.Callback_Function = Callback_Function;
         UART5_Manage_Object.Rx_Buffer_Length = Rx_Buffer_Length;
-        HAL_UARTEx_ReceiveToIdle_DMA(huart, UART5_Manage_Object.Rx_Buffer, UART5_Manage_Object.Rx_Buffer_Length);
+        HAL_UART_Receive_IT(huart, UART5_Manage_Object.Rx_Buffer, UART5_Manage_Object.Rx_Buffer_Length);
     }
     else if (huart->Instance == USART6)
     {

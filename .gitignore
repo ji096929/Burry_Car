@@ -24,6 +24,7 @@
 *.log
 *.lock
 
+!/MDK-ARM/.vscode/*.json
 !*.uvprojx
 !*.h
 !*.c
