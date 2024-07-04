@@ -59,38 +59,15 @@ void Class_Chariot::Init_Position()
     //     Servo[3].Set_Angle(0);
     // }
 }
-// void Class_Chariot::Get_Burry(uint16_t __time_cnt)
-//{
-//     // 默认先松开夹爪
-//     if (__time_cnt >= 50) // 夹取
-//     {
-//         Servo[0].Set_Angle(test_angle_1);
-//         Servo[1].Set_Angle(test_angle_2);
-//         Servo[2].Set_Angle(test_angle_3);
-//         Servo[3].Set_Angle(test_angle_4);
-//         //__HAL_TIM_SET_COMPARE(&htim14, TIM_CHANNEL_1, 1000);
-//     }
-//     // if (__time_cnt >= 450) // 抬起大臂 500ms
-//     // {
-//     //     Servo[1].Set_Angle(0);
-//     // }
-//     // if (__time_cnt >= 720) // 旋转yaw 500ms
-//     // {
-//     //     Servo[2].Set_Angle(0);
-//     // }
-//     // if (__time_cnt >= 920) // 折叠小臂 50ms
-//     // {
-//     //     Servo[3].Set_Angle(0);
-//     // }
-// }
+
 float hi_angle = 20;
 float low_angle = -30;
 float delta = 0.01;
 void Class_Chariot::Scan_Burry(uint16_t __time_cnt)
 {
-    static float delta_angle = -30;
+    static float delta_angle = hi_angle;
 
-	  delta_angle += delta;
+	  delta_angle -= delta;
     if (delta_angle > hi_angle || delta_angle < low_angle)
         delta *= -1.0f;
 	    
@@ -153,38 +130,44 @@ void Class_Chariot::Burry_Input_Cargo_2(uint16_t __time_cnt)
     {
         Servo[2].Set_Angle(-75);
     }
-    if (__time_cnt >= 1260)
+    if (__time_cnt >= 1560)
     {
-        Servo[0].Set_Angle(-30);
+        Servo[0].Set_Angle(-55);
     }
 }
 
 void Class_Chariot::Burry_Output_Cargo_1(uint16_t __time_cnt)
 {
-    Servo[0].Set_Angle(-30);
+    Servo[0].Set_Angle(-55);
     Servo[1].Set_Angle(-45);
     Servo[3].Set_Angle(30);
     Servo[2].Set_Angle(-75);
+    if(__time_cnt >= 2000)
+    {
+        Servo[0].Set_Angle(-5);
+    }
 }
 
 void Class_Chariot::Burry_Output_Cargo_2(uint16_t __time_cnt)
 {
-    Servo[1].Set_Angle(0);
-    Servo[3].Set_Angle(30);
-    Servo[2].Set_Angle(60);
-    Servo[0].Set_Angle(-5);
+   Servo[1].Set_Angle(-25);
+   Servo[2].Set_Angle(60);
+   Servo[3].Set_Angle(30);
+   if(__time_cnt >= 2000)
+   {
+        Servo[0].Set_Angle(-55);
+   }
 }
 
 void Class_Chariot::Midlle_Position(uint16_t __time_cnt)
 {
     if (__time_cnt >= 50)
     {
-        Servo[0].Set_Angle(-5);
         Servo[2].Set_Angle(-45);
     }
     if (__time_cnt >= 360)
     {
-       Servo[3].Set_Angle(-45);
+       Servo[3].Set_Angle(90);
     }
     if (__time_cnt >= 660)
     {
@@ -228,10 +211,6 @@ void Class_Chariot::Init()
    Servo[1].Init(&htim13, TIM_CHANNEL_1);
    Servo[2].Init(&htim5, TIM_CHANNEL_3);
    Servo[3].Init(&htim5, TIM_CHANNEL_4);
-    Servo[0].Init(&htim14, TIM_CHANNEL_1);
-    Servo[1].Init(&htim13, TIM_CHANNEL_1);
-    Servo[2].Init(&htim5, TIM_CHANNEL_3);
-    Servo[3].Init(&htim5, TIM_CHANNEL_4);
 
    Servo[0].Set_Angle(20);
    Servo[1].Set_Angle(0);
@@ -247,11 +226,11 @@ void Class_Chariot::Init()
     //memset(&Now_Cargo, 0, 10 * sizeof(Struct_Cargo));
 }
 
-void Class_Chariot::Get_Cargo_Data()
+uint8_t Class_Chariot::Get_Cargo_Data()
 {
     if(Cargo_List.Exist_Cargo((uint8_t *)ER08.Get_code())!=NULL)
     {
-        return;
+        return 0;
     }
     Cargo_List.Add_Cargo(ER08.Get_x(), ER08.Get_y(), (uint8_t *)ER08.Get_tel(), (uint8_t *)ER08.Get_code());
     Now_Cargo.Position_X = ER08.Get_x();
@@ -259,6 +238,7 @@ void Class_Chariot::Get_Cargo_Data()
     memcpy(Now_Cargo.Code, ER08.Get_code(), 4 * sizeof(uint8_t));
     memcpy(Now_Cargo.Phone_Number, ER08.Get_tel(), 11 * sizeof(uint8_t));
     Now_Cargo_Number++;
+    return 1;
 }
 
 uint8_t Class_Chariot::Jundge_Cargo()
@@ -276,6 +256,10 @@ void Class_Chariot::Output_Cargo()
 {
     Cargo_List.Delete_Cargo(Now_Cargo.Code);
     Now_Cargo_Number--;
+    if(Now_Cargo_Number < 0)
+    {
+        Now_Cargo_Number = 0;
+    }
 }
 
 void Class_Chariot::Set_Control_Status(Enum_Chariot_Control_Status status)
@@ -330,13 +314,16 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
         // 获取货物信息 如果更新就获取信息 转到前往状态
         if (Chariot->ER08.Updata_Flag)
         {
-            //添加当前货物信息入链表
-            Chariot->Get_Cargo_Data();
-            Chariot->ER08.Updata_Flag = 0;
-		  Chariot->SIM900A.Sim900a_Send_Data((char *)Chariot->Now_Cargo.Code, (char *)Chariot->Now_Cargo.Phone_Number);
-            Chariot->Set_Control_Status(Chariot_Input_Cargo_Status);
-            Chariot->Servo[1].Set_Angle(-10);
-            Set_Status(1);
+            Chariot->ER08.Updata_Flag = 0;            
+            //添加当前货物信息入链表  如果货物信息不重复
+            if(Chariot->Get_Cargo_Data())
+            {
+                // 发送短信
+                //Chariot->SIM900A.Sim900a_Send_Data((char *)Chariot->Now_Cargo.Code, (char *)Chariot->Now_Cargo.Phone_Number);
+                Chariot->Set_Control_Status(Chariot_Input_Cargo_Status);
+                Chariot->Servo[1].Set_Angle(-10);
+                Set_Status(1);                
+            }
         }
 
         // 获取取件码信息 如果更新就获取信息 转到取件状态
@@ -393,8 +380,6 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
             {
                 // 放置货物
                 Chariot->Burry_Input_Cargo_2(Status[Now_Status_Serial].Time - 4000);
-                // 发送短信
-                Chariot->SIM900A.Sim900a_Send_Data((char *)Chariot->Now_Cargo.Code, (char *)Chariot->Now_Cargo.Phone_Number);
             }
         }
         // 整个操作5s后返回
@@ -405,19 +390,20 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
         break;
     case 3:
         /*导航返回状态*/
-
-        // 设置目标点
-        Chariot->Chassis.Set_Target_Position_X(0);
-        Chariot->Chassis.Set_Target_Position_Y(0);
-        Chariot->Chassis.Set_Target_Angle(0);
-    
 	    Chariot->Midlle_Position(Status[Now_Status_Serial].Time);
 
-        // 到达目标点 跳转到下一个状态
-        if (fabs(Chariot->Chassis.Get_Now_Position_X() - Chariot->Chassis.Get_Target_Position_X()) < 0.02 &&
-            (fabs(Chariot->Chassis.Get_Now_Position_Y() - Chariot->Chassis.Get_Target_Position_Y()) < 0.02))
+        if(Status[Now_Status_Serial].Time > 2000)
         {
-            Set_Status(4);
+            // 设置目标点
+            Chariot->Chassis.Set_Target_Position_X(0);
+            Chariot->Chassis.Set_Target_Position_Y(0);
+            Chariot->Chassis.Set_Target_Angle(0);
+            // 到达目标点 跳转到下一个状态
+            if (fabs(Chariot->Chassis.Get_Now_Position_X() - Chariot->Chassis.Get_Target_Position_X()) < 0.02 &&
+                (fabs(Chariot->Chassis.Get_Now_Position_Y() - Chariot->Chassis.Get_Target_Position_Y()) < 0.02))
+            {
+                Set_Status(4);
+            }
         }
         break;
 
@@ -431,6 +417,8 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
             {
                 //链表删除当前货物信息
                 Chariot->Output_Cargo();
+                // 返回初始状态
+                Chariot->Burry_Output_Cargo_2(Status[Now_Status_Serial].Time - 2000);
                 if (Status[Now_Status_Serial].Time > 5000)
                     Set_Status(0);                // 返回初始状态
             }

@@ -98,14 +98,6 @@ uint8_t UART_Send_Data(UART_HandleTypeDef *huart, uint8_t *Data, uint16_t Length
     return (HAL_UART_Transmit(huart, Data, Length,0xff));
 }
 
-/**
- * @brief UART的TIM定时器中断发送回调函数
- *
- */
-void TIM_UART_PeriodElapsedCallback()
-{
-    
-}
 
 /**
  * @brief HAL库UART接收DMA空闲中断
@@ -124,7 +116,8 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
         UART1_Manage_Object.Callback_Function(UART1_Manage_Object.Rx_Buffer, Size);
         HAL_UARTEx_ReceiveToIdle_DMA(huart, UART1_Manage_Object.Rx_Buffer, UART1_Manage_Object.Rx_Buffer_Length);
     }
-    else if (huart->Instance == USART2)
+    else 
+	if (huart->Instance == USART2)
     {
         UART2_Manage_Object.Rx_Length = Size;
         UART2_Manage_Object.Callback_Function(UART2_Manage_Object.Rx_Buffer, Size);
@@ -156,5 +149,6 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
         HAL_UARTEx_ReceiveToIdle_DMA(huart, UART6_Manage_Object.Rx_Buffer, UART6_Manage_Object.Rx_Buffer_Length);
     }
 }
+
 
 /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/

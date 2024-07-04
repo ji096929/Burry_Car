@@ -14,6 +14,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 
+#include "iwdg.h"
 #include "drv_uart.h"
 #include "drv_tim.h"
 #include "dvc_imu.h"
@@ -74,7 +75,7 @@ public:
 
     void Init();
 
-    void Get_Cargo_Data();
+    uint8_t Get_Cargo_Data();
     uint8_t Jundge_Cargo();
     void Output_Cargo();
 

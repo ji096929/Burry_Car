@@ -362,3 +362,213 @@ command:
 [2024-07-01 20:33:54]	[done]
 	build successfully !
 
+[2024-07-02 16:06:02]	[done]
+	build successfully !
+
+[2024-07-02 16:08:08]	[done]
+	build successfully !
+
+[2024-07-02 16:10:45]	[done]
+	build successfully !
+
+[2024-07-02 16:31:20]	[done]
+	build successfully !
+
+[2024-07-02 16:31:23]	[done]
+	build successfully !
+
+[2024-07-02 16:47:17]	[done]
+	build successfully !
+
+[2024-07-02 16:47:40]	[done]
+	build successfully !
+
+[2024-07-02 17:05:21]	[done]
+	build successfully !
+
+[2024-07-02 17:14:15]	[done]
+	build successfully !
+
+[2024-07-02 17:24:52]	[done]
+	build successfully !
+
+[2024-07-02 17:25:01]	[done]
+	build successfully !
+
+[2024-07-02 17:42:32]	[done]
+	build successfully !
+
+[2024-07-02 17:48:51]	[done]
+	build successfully !
+
+[2024-07-02 17:51:14]	[done]
+	build successfully !
+
+[2024-07-02 20:38:23]	[done]
+	build successfully !
+
+[2024-07-02 20:43:13]	[done]
+	build successfully !
+
+[2024-07-02 20:45:42]	[done]
+	build successfully !
+
+[2024-07-02 20:48:01]	[done]
+	build successfully !
+
+[2024-07-02 20:50:45]	[done]
+	build successfully !
+
+[2024-07-02 20:52:54]	[done]
+	build successfully !
+
+[2024-07-02 20:59:01]	[done]
+	build successfully !
+
+[2024-07-02 21:12:47]	[done]
+	build successfully !
+
+[2024-07-02 21:35:39]	[done]
+	build successfully !
+
+[2024-07-02 21:39:48]	[done]
+	build successfully !
+
+[2024-07-02 21:48:09]	[done]
+	build successfully !
+
+[2024-07-03 11:18:33]	[done]
+	build successfully !
+
+[2024-07-03 11:19:11]	[done]
+	build successfully !
+
+[2024-07-03 11:22:54]	[done]
+	build successfully !
+
+[2024-07-03 11:25:33]	[done]
+	build successfully !
+
+[2024-07-03 11:26:43]	[done]
+	build successfully !
+
+[2024-07-03 11:31:23]	compilation failed at : "d:\emmble-2024\Burry_Car\User\Task\tsk_config_and_callback.cpp", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I. -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../Core/Inc -I../User/Congfig -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\..\MDK-ARM\infantry\.obj\__\User\Task\tsk_config_and_callback.o --no_depend_system_headers --depend .\..\MDK-ARM\infantry\.obj\__\User\Task\tsk_config_and_callback.d .\..\User\Task\tsk_config_and_callback.cpp
+   at unify_builder.Program.Main(String[] args_)
+---
+".\..\User\Task\tsk_config_and_callback.cpp", line 157: Error:  #20: identifier "test_data" is undefined
+      HAL_UART_Transmit(&huart6, test_data, 8, 1000);
+                                 ^
+.\..\User\Task\tsk_config_and_callback.cpp: 0 warnings, 1 error
+
+[2024-07-03 11:31:40]	[done]
+	build successfully !
+
+[2024-07-03 11:34:06]	[done]
+	build successfully !
+
+[2024-07-03 11:34:13]	[done]
+	build successfully !
+
+[2024-07-03 11:44:25]	[done]
+	build successfully !
+
+[2024-07-03 11:44:38]	[done]
+	build successfully !
+
+[2024-07-03 11:45:06]	[done]
+	build successfully !
+
+[2024-07-03 11:49:27]	[done]
+	build successfully !
+
+[2024-07-03 11:50:39]	[done]
+	build successfully !
+
+[2024-07-03 11:51:05]	[done]
+	build successfully !
+
+[2024-07-03 11:52:28]	[done]
+	build successfully !
+
+[2024-07-03 11:52:40]	[done]
+	build successfully !
+
+[2024-07-03 11:53:22]	[done]
+	build successfully !
+
+[2024-07-03 11:53:31]	[done]
+	build successfully !
+
+[2024-07-03 12:08:22]	[done]
+	build successfully !
+
+[2024-07-03 12:09:41]	[done]
+	build successfully !
+
+[2024-07-03 12:40:42]	compilation failed at : "d:\emmble-2024\Burry_Car\Core\Src\main.c", exit code: 1
+command: 
+  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I. -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../Core/Inc -I../User/Congfig -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\..\MDK-ARM\infantry\.obj\__\Core\Src\main.o --no_depend_system_headers --depend .\..\MDK-ARM\infantry\.obj\__\Core\Src\main.d .\..\Core\Src\main.c
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+"../User/Interaction/ita_chariot.h", line 17: Error:  #5: cannot open source input file "iwdog.h": No such file or directory
+  #include "iwdog.h"
+                    ^
+.\..\Core\Src\main.c: 0 warnings, 1 error
+
+[2024-07-03 12:41:38]	[done]
+	build successfully !
+
+[2024-07-03 12:41:57]	[done]
+	build successfully !
+
+[2024-07-03 12:42:23]	[done]
+	build successfully !
+
+[2024-07-03 12:42:38]	[done]
+	build successfully !
+
+[2024-07-03 12:44:25]	[done]
+	build successfully !
+
+[2024-07-03 12:46:56]	[done]
+	build successfully !
+
+[2024-07-03 12:47:09]	[done]
+	build successfully !
+
+[2024-07-03 12:49:05]	[done]
+	build successfully !
+
+[2024-07-03 12:51:07]	[done]
+	build successfully !
+
+[2024-07-03 12:55:02]	[done]
+	build successfully !
+
+[2024-07-03 12:55:08]	[done]
+	build successfully !
+
+[2024-07-03 12:57:05]	[done]
+	build successfully !
+
+[2024-07-03 16:45:26]	[done]
+	build successfully !
+
+[2024-07-03 17:35:02]	[done]
+	build successfully !
+
+[2024-07-04 11:09:48]	[done]
+	build successfully !
+
+[2024-07-04 16:53:03]	[done]
+	build successfully !
+
+[2024-07-04 16:53:15]	[done]
+	build successfully !
+
+[2024-07-04 17:31:41]	[done]
+	build successfully !
+

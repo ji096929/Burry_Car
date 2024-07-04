@@ -1,5 +1,6 @@
 .\..\MDK-ARM\infantry\.obj\__\Core\Src\dma.o
 .\..\MDK-ARM\infantry\.obj\__\Core\Src\gpio.o
+.\..\MDK-ARM\infantry\.obj\__\Core\Src\iwdg.o
 .\..\MDK-ARM\infantry\.obj\__\Core\Src\main.o
 .\..\MDK-ARM\infantry\.obj\__\Core\Src\spi.o
 .\..\MDK-ARM\infantry\.obj\__\Core\Src\stm32f4xx_hal_msp.o
@@ -16,6 +17,7 @@
 .\..\MDK-ARM\infantry\.obj\__\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ex.o
 .\..\MDK-ARM\infantry\.obj\__\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ramfunc.o
 .\..\MDK-ARM\infantry\.obj\__\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.o
+.\..\MDK-ARM\infantry\.obj\__\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_iwdg.o
 .\..\MDK-ARM\infantry\.obj\__\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr.o
 .\..\MDK-ARM\infantry\.obj\__\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.o
 .\..\MDK-ARM\infantry\.obj\__\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.o

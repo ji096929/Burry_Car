@@ -4,12 +4,6 @@
             "path": "."
         }
     ],
-    "settings": {
-        "files.associations": {
-            "drv_uart.h": "c",
-            "usart.h": "c",
-            "main.h": "c"
-        }
-    },
+    "settings": {},
     "extensions": {}
 }

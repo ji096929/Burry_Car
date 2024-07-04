@@ -25,6 +25,14 @@ void Class_Cargo_List::Delete_Cargo(uint8_t Code[4])
 {
     Struct_Cargo* p = First_Cargo;
     Struct_Cargo* q = First_Cargo;
+    //如果删除的就是第一个节点
+    if(First_Cargo->Code[0] == Code[0] && First_Cargo->Code[1] == Code[1] && First_Cargo->Code[2] == Code[2] && First_Cargo->Code[3] == Code[3])
+    {
+        First_Cargo = First_Cargo->Next_Cargo;
+        delete p;
+        return;
+    }
+    //如果删除的不是第一个节点
     while (p != NULL)
     {
         if (p->Code[0] == Code[0] && p->Code[1] == Code[1] && p->Code[2] == Code[2] && p->Code[3] == Code[3])
@@ -36,7 +44,6 @@ void Class_Cargo_List::Delete_Cargo(uint8_t Code[4])
         q = p;
         p = p->Next_Cargo;
     }
-
 }
 
 Struct_Cargo* Class_Cargo_List::Exist_Cargo(uint8_t Code[4])

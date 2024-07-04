@@ -77,10 +77,10 @@ void Task_Init()
     SPI_Init(&hspi1,SPI1_IMU_Task_Callback);
 
     UART_Init(&huart1, ER08_UART1_Callback, 19);
-    //HAL_UART_Receive_IT(&huart1, buffer1, 19);
-//	HAL_UART_Receive_IT(&huart2, buffer2, 4);
     UART_Init(&huart2, Tjc011_UART2_Callback, 20);
     UART_Init(&huart5, SIM_UART5_Callback, 20);
+		HAL_UART_Receive_IT(&huart1, UART1_Manage_Object.Rx_Buffer, 19);
+
     /********************************* 设备层初始化 *********************************/
 
      //设备层集成在交互层初始化中，没有显视地初始化
@@ -127,12 +127,9 @@ void Task_Init()
  *
  */
 void TIM6_Task1ms_PeriodElapsedCallback()
-{
-	static uint16_t cnt=0;
-	cnt++;
-	
+{	
    //任务状态机
-	FSM_Chariot.Reload_TIM_Status_PeriodElapsedCallback();
+   FSM_Chariot.Reload_TIM_Status_PeriodElapsedCallback();
 
    // IMU任务
    FSM_Chariot.Chariot->Chassis.IMU.TIM_Calculate_PeriodElapsedCallback();    
@@ -140,11 +137,9 @@ void TIM6_Task1ms_PeriodElapsedCallback()
    // 加速度积分计算位移
    Chariot.Chassis.TIM1ms_Chassis_Posture_PeriodElapsedCallback();
 
-	 // 编码器微分计算转速
+   // 编码器微分计算转速
    for (auto i = 0; i < 4; i++)
        Chariot.Chassis.Motor[i].TIM1ms_Motor_Data_PeriodElapsedCallback();
-	 
-
 }
 
 
@@ -155,22 +150,16 @@ void TIM6_Task1ms_PeriodElapsedCallback()
  */
 void TIM7_Task5ms_PeriodElapsedCallback()
 {
-	static uint16_t cnt=0;
-	cnt++;
     /****************************** 交互层回调函数 1ms *****************************************/
     
    //底盘速度解算
    Chariot.Chassis.TIM_Calculate_PeriodElapsedCallback();
 
    //四电机PID
-//   for(auto i = 0; i < 4; i++)
-//      Chariot.Chassis.Motor[i].TIM5ms_Motor_Calculate_PeriodElapsedCallback();
+  for(auto i = 0; i < 4; i++)
+     Chariot.Chassis.Motor[i].TIM5ms_Motor_Calculate_PeriodElapsedCallback();
     
     /****************************** 驱动层回调函数 1ms *****************************************/ 
-
-    //统一打包发送
-    //TIM_UART_PeriodElapsedCallback();
-	
 }
 
 /**
@@ -179,22 +168,29 @@ void TIM7_Task5ms_PeriodElapsedCallback()
  */
 void Task_Loop()
 {
+    uint8_t test_data[19] = {0};
+    test_data[0] = Chariot.Now_Cargo.Position_X;
+    test_data[1] = Chariot.Now_Cargo.Position_Y;
+    test_data[2] = ' ';
+    memcpy(&test_data[3], Chariot.Now_Cargo.Code, 4);
+    test_data[7] = ' ';
+    memcpy(&test_data[8], Chariot.Now_Cargo.Phone_Number, 11);
+	test_data[19] = ' ';
+	memcpy(&test_data[20],Chariot.Tjc011.Get_Input_Number(),4);
+    HAL_UART_Transmit(&huart6, test_data, 24, 10);
 
+    //喂狗
+    HAL_IWDG_Refresh(&hiwdg);
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
     if (huart->Instance == USART1)
     {
-        //ER08_UART1_Callback(huart->pRxBuffPtr, huart->RxXferCount);
-	        ER08_UART1_Callback(Chariot.ER08.UART_Manage_Object->Rx_Buffer, 19);
-            HAL_UART_Receive_IT(&huart1, Chariot.ER08.UART_Manage_Object->Rx_Buffer, 19);
-            // 处理USART1接收到的数据
-    }
-    else if (huart->Instance == USART2)
-    {
-	    HAL_UART_Receive_IT(&huart2, buffer2, 4);
-        // 处理USART2接收到的数据
+			// 处理USART1接收到的数据
+	        ER08_UART1_Callback(UART1_Manage_Object.Rx_Buffer, 19);
+          HAL_UART_Receive_IT(&huart1, UART1_Manage_Object.Rx_Buffer, 19);
+            
     }
 }
 
