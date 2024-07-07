@@ -100,11 +100,16 @@
         "startup_stm32f407xx.s"
     ],
     "sourceParams": {},
-    "sourceParamsMtime": 1719574605702.8413,
+    "sourceParamsMtime": 1720344722650.2288,
     "options": {
         "version": 4,
         "beforeBuildTasks": [],
-        "afterBuildTasks": [],
+        "afterBuildTasks": [
+            {
+                "name": "axf to elf",
+                "command": "axf2elf -d \"D:\\Keil5\\keil5_anzhuangbao\\ARM\\ARMCC\" -i \"${outDir}\\infantry.axf\" -o \"${outDir}\\infantry.elf\" > \"${outDir}\\axf2elf.log\""
+            }
+        ],
         "global": {
             "use-microLIB": false,
             "output-debug-info": "enable",
@@ -127,7 +132,6 @@
             "xo-base": "",
             "ro-base": "",
             "rw-base": "",
-            "$disableOutputTask": true,
             "link-scatter": [
                 "\"d:/emmble-2024/Burry_Car/MDK-ARM/infantry/infantry.sct\""
             ]
@@ -154,10 +158,10 @@
     "sha": {
         "c/cpp-defines": "0178c6535f763739713d81c6ee26e46f",
         "beforeBuildTasks": "d751713988987e9331980363e24189ce",
-        "afterBuildTasks": "d751713988987e9331980363e24189ce",
+        "afterBuildTasks": "a7ea81ce86d64e5bdac223a5f870e7e5",
         "global": "a620fd78ce68cb35fdf638caa176e530",
         "c/cpp-compiler": "c0469c3553a1be63fcd593ea22151dac",
         "asm-compiler": "99914b932bd37a50b983c5e7c90ae93b",
-        "linker": "5349a883b52459866cb8fc330510dd25"
+        "linker": "36fbf003ed654bb200700434e1887830"
     }
 }

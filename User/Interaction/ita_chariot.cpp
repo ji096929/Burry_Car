@@ -74,7 +74,7 @@ void Class_Chariot::Scan_Burry(uint16_t __time_cnt)
     Servo[0].Set_Angle(test_angle_1);
     Servo[1].Set_Angle(delta_angle);
     Servo[2].Set_Angle(60);
-    Servo[3].Set_Angle(30);
+    Servo[3].Set_Angle(45);
 }
 // 有货夹取放车上
 // 1 3 4 2
@@ -124,7 +124,7 @@ void Class_Chariot::Burry_Input_Cargo_2(uint16_t __time_cnt)
     }
     if (__time_cnt >= 260)
     {
-        Servo[3].Set_Angle(30);
+        Servo[3].Set_Angle(45);
     }
     if (__time_cnt >= 660)
     {
@@ -140,8 +140,14 @@ void Class_Chariot::Burry_Output_Cargo_1(uint16_t __time_cnt)
 {
     Servo[0].Set_Angle(-55);
     Servo[1].Set_Angle(-45);
-    Servo[3].Set_Angle(30);
-    Servo[2].Set_Angle(-75);
+    if(__time_cnt >= 400)
+    {
+        Servo[3].Set_Angle(45);
+    }
+    if(__time_cnt >= 1400)
+    {
+        Servo[2].Set_Angle(-75);
+    }
     if(__time_cnt >= 2000)
     {
         Servo[0].Set_Angle(-5);
@@ -151,8 +157,14 @@ void Class_Chariot::Burry_Output_Cargo_1(uint16_t __time_cnt)
 void Class_Chariot::Burry_Output_Cargo_2(uint16_t __time_cnt)
 {
    Servo[1].Set_Angle(-25);
-   Servo[2].Set_Angle(60);
-   Servo[3].Set_Angle(30);
+   if(__time_cnt >= 400)
+   {
+        Servo[3].Set_Angle(45);
+   }
+   if(__time_cnt >= 1400)
+   {
+        Servo[2].Set_Angle(60);
+   }
    if(__time_cnt >= 2000)
    {
         Servo[0].Set_Angle(-55);
@@ -319,7 +331,7 @@ void Class_FSM_Chariot_Control::Reload_TIM_Status_PeriodElapsedCallback()
             if(Chariot->Get_Cargo_Data())
             {
                 // 发送短信
-                //Chariot->SIM900A.Sim900a_Send_Data((char *)Chariot->Now_Cargo.Code, (char *)Chariot->Now_Cargo.Phone_Number);
+                Chariot->SIM900A.Sim900a_Send_Data((char *)Chariot->Now_Cargo.Code, (char *)Chariot->Now_Cargo.Phone_Number);
                 Chariot->Set_Control_Status(Chariot_Input_Cargo_Status);
                 Chariot->Servo[1].Set_Angle(-10);
                 Set_Status(1);                

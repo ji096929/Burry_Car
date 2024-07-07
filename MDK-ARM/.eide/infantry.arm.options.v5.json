@@ -19,7 +19,6 @@
         "output-format": "elf",
         "xo-base": "",
         "ro-base": "",
-        "rw-base": "",
-        "$disableOutputTask": true
+        "rw-base": ""
     }
 }
