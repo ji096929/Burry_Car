@@ -54,12 +54,11 @@ void Class_Chassis::Init()
     Position_Yaw_PID.Init(0.1, 0, 0, 0, 0, 0 , 0, 0, 0, 0.005, 0);
 
 
-
     //电机初始化
-    Motor[0].Init(&htim12, &htim2, TIM_CHANNEL_1, TIM_CHANNEL_2, 5000, 2484);
-    Motor[1].Init(&htim8, &htim1, TIM_CHANNEL_1, TIM_CHANNEL_2, 5000, 2471);
-    Motor[2].Init(&htim8,&htim4,TIM_CHANNEL_3,TIM_CHANNEL_4,5000,2494);
-    Motor[3].Init(&htim5,&htim3,TIM_CHANNEL_1,TIM_CHANNEL_2,20000,2468);
+    Motor[0].Init(&htim12, &htim2, TIM_CHANNEL_1, TIM_CHANNEL_2, 5000, 1315);
+    Motor[1].Init(&htim8, &htim1, TIM_CHANNEL_1, TIM_CHANNEL_2, 5000, 1315);
+    Motor[2].Init(&htim8,&htim4,TIM_CHANNEL_3,TIM_CHANNEL_4,5000,1315);
+    Motor[3].Init(&htim5,&htim3,TIM_CHANNEL_1,TIM_CHANNEL_2,20000,1315);
 
     //电机PID初始化
     Motor[0].Speed_PID.Init(1300, 1200, 0, 0, 1500, 4999 , 0, 0, 0, 0.005, 0);
@@ -202,20 +201,20 @@ void Class_Chassis::Navigation_Calibrate()
 void Class_Chassis::TIM_Calculate_PeriodElapsedCallback()
 {
     //补充导航部分pid
-  Position_Y_PID.Set_Target(Target_Position_Y);
-  Position_Y_PID.Set_Now(Now_Position_Y);
-  Position_Y_PID.TIM_Adjust_PeriodElapsedCallback();
-  Target_Velocity_Y = Position_Y_PID.Get_Out();
+    Position_Y_PID.Set_Target(Target_Position_Y);
+    Position_Y_PID.Set_Now(Now_Position_Y);
+    Position_Y_PID.TIM_Adjust_PeriodElapsedCallback();
+    Target_Velocity_Y = Position_Y_PID.Get_Out();
 
-  Position_X_PID.Set_Target(Target_Position_X);
-  Position_X_PID.Set_Now(Now_Position_X);
-  Position_X_PID.TIM_Adjust_PeriodElapsedCallback();
-  Target_Velocity_X = -1.0f * Position_X_PID.Get_Out();
+    Position_X_PID.Set_Target(Target_Position_X);
+    Position_X_PID.Set_Now(Now_Position_X);
+    Position_X_PID.TIM_Adjust_PeriodElapsedCallback();
+    Target_Velocity_X = -1.0f * Position_X_PID.Get_Out();
 
-   Position_Yaw_PID.Set_Target(Target_Angle);
-   Position_Yaw_PID.Set_Now(Now_Angle);
-   Position_Yaw_PID.TIM_Adjust_PeriodElapsedCallback();
-   Target_Omega = Position_Yaw_PID.Get_Out();
+    Position_Yaw_PID.Set_Target(Target_Angle);
+    Position_Yaw_PID.Set_Now(Now_Angle);
+    Position_Yaw_PID.TIM_Adjust_PeriodElapsedCallback();
+    Target_Omega = Position_Yaw_PID.Get_Out();
 
     #ifdef SPEED_SLOPE
 

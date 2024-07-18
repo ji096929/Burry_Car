@@ -126,10 +126,15 @@ void Task_Init()
  * @brief TIM6任务回调函数
  *
  */
+float test_angle1 = -10.0f;
+float test_angle2 = 0;
+float test_angle3 = 30;
+bool test_flag = 1;
+uint8_t Reset_flag = 0;
 void TIM6_Task1ms_PeriodElapsedCallback()
 {	
    //任务状态机
-   FSM_Chariot.Reload_TIM_Status_PeriodElapsedCallback();
+   //FSM_Chariot.Reload_TIM_Status_PeriodElapsedCallback();
 
    // IMU任务
    FSM_Chariot.Chariot->Chassis.IMU.TIM_Calculate_PeriodElapsedCallback();    
@@ -152,12 +157,12 @@ void TIM7_Task5ms_PeriodElapsedCallback()
 {
     /****************************** 交互层回调函数 1ms *****************************************/
     
-   //底盘速度解算
+//    //底盘速度解算
    Chariot.Chassis.TIM_Calculate_PeriodElapsedCallback();
 
-   //四电机PID
-  for(auto i = 0; i < 4; i++)
-     Chariot.Chassis.Motor[i].TIM5ms_Motor_Calculate_PeriodElapsedCallback();
+    //四电机PID
+   for(auto i = 0; i < 4; i++)
+    Chariot.Chassis.Motor[i].TIM5ms_Motor_Calculate_PeriodElapsedCallback();
     
     /****************************** 驱动层回调函数 1ms *****************************************/ 
 }

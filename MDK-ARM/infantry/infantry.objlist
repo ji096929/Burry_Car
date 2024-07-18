@@ -36,6 +36,7 @@
 .\..\MDK-ARM\infantry\.obj\__\User\Device\dvc_dwt.o
 .\..\MDK-ARM\infantry\.obj\__\User\Device\dvc_imu.o
 .\..\MDK-ARM\infantry\.obj\__\User\Device\dvc_motor.o
+.\..\MDK-ARM\infantry\.obj\__\User\Device\dvc_ws2812.o
 .\..\MDK-ARM\infantry\.obj\__\User\Interaction\ita_chariot.o
 .\..\MDK-ARM\infantry\.obj\__\User\Middleware\Algorithm\PID.o
 .\..\MDK-ARM\infantry\.obj\__\User\Middleware\Algorithm\QuaternionEKF.o

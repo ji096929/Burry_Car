@@ -177,6 +177,9 @@
           },
           {
             "path": "../User/Device/dvc.servo.cpp"
+          },
+          {
+            "path": "../User/Device/dvc_ws2812.c"
           }
         ],
         "folders": []

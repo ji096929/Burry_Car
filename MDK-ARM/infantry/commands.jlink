@@ -1,6 +1,6 @@
 r
 halt
-loadfile "d:\emmble-2024\Burry_Car\MDK-ARM\infantry\infantry.hex"
+loadfile "d:\emmble-2024\嵌入式大赛\Burry_Car\MDK-ARM\infantry\infantry.hex"
 r
 go
 exit

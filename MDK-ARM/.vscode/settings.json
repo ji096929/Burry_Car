@@ -1,3 +1,4 @@
 {
-    "editor.fontSize": 14
+    "editor.fontSize": 14,
+    "EIDE.ARM.Option.AxfToElf": true
 }

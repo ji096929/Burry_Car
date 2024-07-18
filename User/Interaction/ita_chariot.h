@@ -25,6 +25,8 @@
 #include "dvc_Tjc011.h"
 #include "dvc_cargo.h"
 #include "dvc.servo.h"
+#include "dvc_WS2812.h"
+
 /* Exported macros -----------------------------------------------------------*/
 class Class_Chariot;
 /* Exported types ------------------------------------------------------------*/
@@ -62,28 +64,29 @@ class Class_Chariot
 {
 public:
 
-    Class_Chassis Chassis;
-    Class_ER08 ER08;
-    Class_SIM900A SIM900A;
-    Class_Tjc011 Tjc011;
-    Class_Cargo_List Cargo_List;
-    Struct_Cargo Now_Cargo;
-    uint8_t Now_Cargo_Number;
-    Class_Servo Servo[4];
-    Enum_Chariot_Control_Status Control_Status = Chariot_Disable_Status;
-    friend class Class_FSM_Chariot_Control;
+    Class_Chassis Chassis;  //底盘
+    Class_ER08 ER08; //扫码模块
+    Class_SIM900A SIM900A; //通信模块
+    Class_Tjc011 Tjc011; //液晶屏模块
+    Class_Cargo_List Cargo_List; //货物链表
+    Struct_Cargo Now_Cargo; //当前货物
+    uint8_t Now_Cargo_Number; //当前入库货物数量
+    Class_Servo Servo[4]; //四轴舵机自由度
+    Enum_Chariot_Control_Status Control_Status = Chariot_Disable_Status; //控制状态
+    friend class Class_FSM_Chariot_Control; //有限自动机
 
+    //构造函数
     void Init();
 
     uint8_t Get_Cargo_Data();
     uint8_t Jundge_Cargo();
     void Output_Cargo();
 
-    void Burry_Output_Cargo_1(uint16_t __time_cnt);
-    void Burry_Output_Cargo_2(uint16_t __time_cnt);
-    void Burry_Input_Cargo_1(uint16_t __time_cnt);
-    void Burry_Input_Cargo_2(uint16_t __time_cnt);
-    void Midlle_Position(uint16_t __time_cnt);
+    bool Burry_Output_Cargo_1(uint16_t __time_cnt);
+    bool Burry_Output_Cargo_2(uint16_t __time_cnt);
+    bool Burry_Input_Cargo_1(uint16_t __time_cnt);
+    bool Burry_Input_Cargo_2(uint16_t __time_cnt);
+    bool Midlle_Position(uint16_t __time_cnt);
     void Scan_Burry(uint16_t __time_cnt);
     
     void Init_Position();

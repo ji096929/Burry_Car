@@ -1,610 +1,99 @@
-[2024-06-26 20:58:07]	[done]
+[2024-07-10 20:16:16]	[done]
 	build successfully !
 
-[2024-06-26 20:59:46]	[done]
+[2024-07-10 20:17:28]	[done]
 	build successfully !
 
-[2024-06-26 20:59:57]	[done]
+[2024-07-10 22:27:08]	[done]
 	build successfully !
 
-[2024-06-26 21:05:27]	[done]
+[2024-07-18 16:35:35]	[done]
 	build successfully !
 
-[2024-06-27 14:12:00]	[done]
+[2024-07-18 16:48:33]	[done]
 	build successfully !
 
-[2024-06-27 14:16:47]	[done]
+[2024-07-18 16:56:23]	[done]
 	build successfully !
 
-[2024-06-27 14:17:29]	[done]
+[2024-07-18 16:56:31]	[done]
 	build successfully !
 
-[2024-06-27 14:19:17]	[done]
+[2024-07-18 16:56:38]	[done]
 	build successfully !
 
-[2024-06-27 14:19:38]	[done]
+[2024-07-18 18:05:17]	[done]
 	build successfully !
 
-[2024-06-27 14:25:29]	link failed !, exit code: 1
-   at unify_builder.Program.Main(String[] args_)
----
-Error: L6218E: Undefined symbol flag (referred from tsk_config_and_callback.o).
-Not enough information to list image symbols.
-Finished: 1 information, 0 warning and 1 error messages.
-
-
-[2024-06-27 14:26:12]	[done]
-	build successfully !
-
-[2024-06-27 14:27:15]	[done]
-	build successfully !
-
-[2024-06-27 14:35:06]	[done]
-	build successfully !
-
-[2024-06-27 14:36:11]	compilation failed at : "d:\emmble-2024\Burry_Car_new\User\Interaction\ita_chariot.cpp", exit code: 1
-command: 
-  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I. -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../Core/Inc -I../User/Congfig -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -O1 --split_sections -W --cpp11 -g -o .\..\MDK-ARM\infantry\.obj\__\User\Interaction\ita_chariot.o --no_depend_system_headers --depend .\..\MDK-ARM\infantry\.obj\__\User\Interaction\ita_chariot.d .\..\User\Interaction\ita_chariot.cpp
-   at unify_builder.Program.Main(String[] args_)
----
-".\..\User\Interaction\ita_chariot.cpp", line 92: Error:  #265-D: member "Class_ER08::Updata_Flag"  (declared at line 33 of "../User/Device/dvc_ER08.h") is inaccessible
-          if(Chariot->ER08.Updata_Flag)
-                           ^
-".\..\User\Interaction\ita_chariot.cpp", line 95: Error:  #265-D: member "Class_ER08::Updata_Flag"  (declared at line 33 of "../User/Device/dvc_ER08.h") is inaccessible
-              Chariot->ER08.Updata_Flag = 0;
-                            ^
-.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 2 errors
-
-[2024-06-27 14:38:16]	[done]
-	build successfully !
-
-[2024-06-27 14:42:10]	[done]
-	build successfully !
-
-[2024-06-27 15:05:28]	[done]
-	build successfully !
-
-[2024-06-27 17:14:21]	[done]
-	build successfully !
-
-[2024-06-27 17:59:12]	compilation failed at : "d:\emmble-2024\Burry_Car_new\Core\Src\main.c", exit code: 1
-command: 
-  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I. -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../Core/Inc -I../User/Congfig -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -O1 --split_sections -W --cpp11 -g -o .\..\MDK-ARM\infantry\.obj\__\Core\Src\main.o --no_depend_system_headers --depend .\..\MDK-ARM\infantry\.obj\__\Core\Src\main.d .\..\Core\Src\main.c
-   at unify_builder.Program.Main(String[] args_)
----
-"../User/Interaction/ita_chariot.h", line 70: Error:  #20: identifier "Disable_Status" is undefined
-      Enum_Chariot_Control_Status Control_Status = Disable_Status;
-                                                   ^
-.\..\Core\Src\main.c: 0 warnings, 1 error
-
-[2024-06-27 17:59:35]	[done]
-	build successfully !
-
-[2024-06-27 18:00:21]	[done]
-	build successfully !
-
-[2024-06-27 20:11:14]	[done]
-	build successfully !
-
-[2024-06-27 20:18:31]	[done]
-	build successfully !
-
-[2024-06-28 19:38:02]	[done]
-	build successfully !
-
-[2024-06-28 19:39:43]	[done]
-	build successfully !
-
-[2024-06-28 19:40:04]	[done]
-	build successfully !
-
-[2024-06-28 19:53:00]	compilation failed at : "d:\emmble-2024\Burry_Car\User\Interaction\ita_chariot.cpp", exit code: 1
-command: 
-  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I. -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../Core/Inc -I../User/Congfig -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -O1 --split_sections -W --cpp11 -g -o .\..\MDK-ARM\infantry\.obj\__\User\Interaction\ita_chariot.o --no_depend_system_headers --depend .\..\MDK-ARM\infantry\.obj\__\User\Interaction\ita_chariot.d .\..\User\Interaction\ita_chariot.cpp
-   at unify_builder.Program.Main(String[] args_)
----
-".\..\User\Interaction\ita_chariot.cpp", line 253: Error:  #20: identifier "Cargo" is undefined
-          if (ER08.Get_x() == Cargo[i].Position_X && ER08.Get_y() == Cargo[i].Position_Y)
-                              ^
-".\..\User\Interaction\ita_chariot.cpp", line 258: Error:  #20: identifier "Cargo" is undefined
-      Cargo[Now_Cargo_Number].Position_X = ER08.Get_x();
-      ^
-".\..\User\Interaction\ita_chariot.cpp", line 274: Error:  #20: identifier "Cargo" is undefined
-          if (memcmp(tmp, Cargo[i].Code, 4 * sizeof(uint8_t)) == 0)
-                          ^
-.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 3 errors
-
-[2024-06-28 19:57:27]	[done]
-	build successfully !
-
-[2024-06-28 20:03:12]	[done]
-	build successfully !
-
-[2024-06-28 20:03:44]	[done]
-	build successfully !
-
-[2024-06-28 20:30:51]	[done]
-	build successfully !
-
-[2024-06-28 20:34:08]	[done]
-	build successfully !
-
-[2024-06-28 20:43:24]	[done]
-	build successfully !
-
-[2024-06-28 20:43:40]	[done]
-	build successfully !
-
-[2024-06-28 20:45:12]	[done]
-	build successfully !
-
-[2024-06-28 20:48:41]	[done]
-	build successfully !
-
-[2024-06-28 20:51:48]	[done]
-	build successfully !
-
-[2024-06-28 21:06:15]	[done]
-	build successfully !
-
-[2024-06-28 21:06:33]	[done]
-	build successfully !
-
-[2024-06-28 21:17:23]	[done]
-	build successfully !
-
-[2024-06-28 21:34:52]	[done]
-	build successfully !
-
-[2024-06-28 21:41:19]	[done]
-	build successfully !
-
-[2024-06-28 22:31:18]	[done]
-	build successfully !
-
-[2024-06-28 22:53:20]	[done]
-	build successfully !
-
-[2024-06-28 23:02:54]	[done]
-	build successfully !
-
-[2024-06-28 23:08:10]	[done]
-	build successfully !
-
-[2024-06-28 23:19:15]	[done]
-	build successfully !
-
-[2024-06-28 23:19:37]	[done]
-	build successfully !
-
-[2024-06-28 23:21:27]	[done]
-	build successfully !
-
-[2024-06-28 23:23:36]	[done]
-	build successfully !
-
-[2024-06-28 23:24:03]	[done]
-	build successfully !
-
-[2024-06-28 23:25:30]	[done]
-	build successfully !
-
-[2024-06-28 23:27:13]	[done]
-	build successfully !
-
-[2024-06-28 23:37:57]	[done]
-	build successfully !
-
-[2024-06-28 23:38:02]	[done]
-	build successfully !
-
-[2024-06-28 23:43:23]	[done]
-	build successfully !
-
-[2024-06-28 23:43:46]	[done]
-	build successfully !
-
-[2024-06-28 23:47:38]	[done]
-	build successfully !
-
-[2024-06-29 00:03:42]	[done]
-	build successfully !
-
-[2024-06-29 00:09:18]	[done]
-	build successfully !
-
-[2024-06-29 00:09:45]	[done]
-	build successfully !
-
-[2024-06-29 00:12:34]	[done]
-	build successfully !
-
-[2024-06-29 00:13:51]	[done]
-	build successfully !
-
-[2024-06-29 00:16:14]	[done]
-	build successfully !
-
-[2024-06-29 00:19:43]	[done]
-	build successfully !
-
-[2024-06-29 08:13:04]	[done]
-	build successfully !
-
-[2024-06-29 08:17:04]	[done]
-	build successfully !
-
-[2024-06-29 08:17:29]	[done]
-	build successfully !
-
-[2024-06-29 08:18:03]	[done]
-	build successfully !
-
-[2024-06-29 08:19:37]	[done]
-	build successfully !
-
-[2024-06-29 08:41:48]	[done]
-	build successfully !
-
-[2024-06-29 08:42:04]	[done]
-	build successfully !
-
-[2024-06-29 08:42:37]	[done]
-	build successfully !
-
-[2024-06-29 08:47:52]	[done]
-	build successfully !
-
-[2024-06-29 08:56:25]	[done]
-	build successfully !
-
-[2024-06-29 09:00:43]	[done]
-	build successfully !
-
-[2024-06-29 09:01:02]	[done]
-	build successfully !
-
-[2024-06-29 09:17:08]	[done]
-	build successfully !
-
-[2024-06-29 09:48:05]	[done]
-	build successfully !
-
-[2024-06-29 10:02:14]	[done]
-	build successfully !
-
-[2024-06-29 10:45:37]	[done]
-	build successfully !
-
-[2024-06-29 10:53:20]	[done]
-	build successfully !
-
-[2024-07-01 10:22:57]	[done]
-	build successfully !
-
-[2024-07-01 10:23:12]	[done]
-	build successfully !
-
-[2024-07-01 19:56:30]	compilation failed at : "d:\emmble-2024\Burry_Car\Core\Src\stm32f4xx_it.c", exit code: 1
-command: 
-  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I. -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../Core/Inc -I../User/Congfig -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -O1 --split_sections -W --cpp11 -g -o .\..\MDK-ARM\infantry\.obj\__\Core\Src\stm32f4xx_it.o --no_depend_system_headers --depend .\..\MDK-ARM\infantry\.obj\__\Core\Src\stm32f4xx_it.d .\..\Core\Src\stm32f4xx_it.c
-   at unify_builder.Program.Main(String[] args_)
----
-".\..\Core\Src\stm32f4xx_it.c", line 291: Error:  #20: identifier "UART1_Manage_Object" is undefined
-    HAL_UARTEx_ReceiveToIdle_DMA(&huart1, UART1_Manage_Object.Rx_Buffer, UART1_Manage_Object.Rx_Buffer_Length);
-                                          ^
-".\..\Core\Src\stm32f4xx_it.c", line 305: Error:  #20: identifier "UART2_Manage_Object" is undefined
-    HAL_UARTEx_ReceiveToIdle_DMA(&huart2, UART2_Manage_Object.Rx_Buffer, UART2_Manage_Object.Rx_Buffer_Length);
-                                          ^
-.\..\Core\Src\stm32f4xx_it.c: 0 warnings, 2 errors
-
-[2024-07-01 19:56:52]	compilation failed at : "d:\emmble-2024\Burry_Car\Core\Src\stm32f4xx_it.c", exit code: 1
-command: 
-  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I. -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../Core/Inc -I../User/Congfig -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -O1 --split_sections -W --cpp11 -g -o .\..\MDK-ARM\infantry\.obj\__\Core\Src\stm32f4xx_it.o --no_depend_system_headers --depend .\..\MDK-ARM\infantry\.obj\__\Core\Src\stm32f4xx_it.d .\..\Core\Src\stm32f4xx_it.c
-   at unify_builder.Program.Main(String[] args_)
----
-".\..\Core\Src\stm32f4xx_it.c", line 291: Error:  #20: identifier "UART1_Manage_Object" is undefined
-    HAL_UARTEx_ReceiveToIdle_DMA(&huart1, UART1_Manage_Object.Rx_Buffer, UART1_Manage_Object.Rx_Buffer_Length);
-                                          ^
-".\..\Core\Src\stm32f4xx_it.c", line 305: Error:  #20: identifier "UART2_Manage_Object" is undefined
-    HAL_UARTEx_ReceiveToIdle_DMA(&huart2, UART2_Manage_Object.Rx_Buffer, UART2_Manage_Object.Rx_Buffer_Length);
-                                          ^
-.\..\Core\Src\stm32f4xx_it.c: 0 warnings, 2 errors
-
-[2024-07-01 19:57:59]	compilation failed at : "d:\emmble-2024\Burry_Car\Core\Src\stm32f4xx_it.c", exit code: 1
-command: 
-  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I. -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../Core/Inc -I../User/Congfig -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -O1 --split_sections -W --cpp11 -g -o .\..\MDK-ARM\infantry\.obj\__\Core\Src\stm32f4xx_it.o --no_depend_system_headers --depend .\..\MDK-ARM\infantry\.obj\__\Core\Src\stm32f4xx_it.d .\..\Core\Src\stm32f4xx_it.c
-   at unify_builder.Program.Main(String[] args_)
----
-".\..\Core\Src\stm32f4xx_it.c", line 291: Error:  #20: identifier "UART1_Manage_Object" is undefined
-    HAL_UARTEx_ReceiveToIdle_DMA(&huart1, UART1_Manage_Object.Rx_Buffer, UART1_Manage_Object.Rx_Buffer_Length);
-                                          ^
-".\..\Core\Src\stm32f4xx_it.c", line 305: Error:  #20: identifier "UART2_Manage_Object" is undefined
-    HAL_UARTEx_ReceiveToIdle_DMA(&huart2, UART2_Manage_Object.Rx_Buffer, UART2_Manage_Object.Rx_Buffer_Length);
-                                          ^
-.\..\Core\Src\stm32f4xx_it.c: 0 warnings, 2 errors
-
-[2024-07-01 20:01:52]	[done]
-	build successfully !
-
-[2024-07-01 20:30:39]	compilation failed at : "d:\emmble-2024\Burry_Car\User\Interaction\ita_chariot.cpp", exit code: 1
-command: 
-  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I. -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../Core/Inc -I../User/Congfig -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -O1 --split_sections -W --cpp11 -g -o .\..\MDK-ARM\infantry\.obj\__\User\Interaction\ita_chariot.o --no_depend_system_headers --depend .\..\MDK-ARM\infantry\.obj\__\User\Interaction\ita_chariot.d .\..\User\Interaction\ita_chariot.cpp
-   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
-   at unify_builder.Program.Main(String[] args_)
----
-".\..\User\Interaction\ita_chariot.cpp", line 227: Error:  #29: expected an expression
-  <<<<<<< HEAD
-  ^
-".\..\User\Interaction\ita_chariot.cpp", line 232: Error:  #29: expected an expression
-  =======
-  ^
-".\..\User\Interaction\ita_chariot.cpp", line 237: Error:  #29: expected an expression
-  >>>>>>> 5e98795bdbe36645d776c578737e284b4ed090e4
-  ^
-".\..\User\Interaction\ita_chariot.cpp", line 237: Error:  #30: floating constant is out of range
-  >>>>>>> 5e98795bdbe36645d776c578737e284b4ed090e4
-          ^
-".\..\User\Interaction\ita_chariot.cpp", line 338: Error:  #29: expected an expression
-  <<<<<<< HEAD
-  ^
-".\..\User\Interaction\ita_chariot.cpp", line 342: Error:  #29: expected an expression
-  >>>>>>> 5e98795bdbe36645d776c578737e284b4ed090e4
-  ^
-".\..\User\Interaction\ita_chariot.cpp", line 342: Error:  #30: floating constant is out of range
-  >>>>>>> 5e98795bdbe36645d776c578737e284b4ed090e4
-          ^
-.\..\User\Interaction\ita_chariot.cpp: 0 warnings, 7 errors
-
-[2024-07-01 20:32:41]	[done]
-	build successfully !
-
-[2024-07-01 20:33:54]	[done]
-	build successfully !
-
-[2024-07-02 16:06:02]	[done]
-	build successfully !
-
-[2024-07-02 16:08:08]	[done]
-	build successfully !
-
-[2024-07-02 16:10:45]	[done]
-	build successfully !
-
-[2024-07-02 16:31:20]	[done]
-	build successfully !
-
-[2024-07-02 16:31:23]	[done]
-	build successfully !
-
-[2024-07-02 16:47:17]	[done]
-	build successfully !
-
-[2024-07-02 16:47:40]	[done]
-	build successfully !
-
-[2024-07-02 17:05:21]	[done]
-	build successfully !
-
-[2024-07-02 17:14:15]	[done]
-	build successfully !
-
-[2024-07-02 17:24:52]	[done]
-	build successfully !
-
-[2024-07-02 17:25:01]	[done]
-	build successfully !
-
-[2024-07-02 17:42:32]	[done]
-	build successfully !
-
-[2024-07-02 17:48:51]	[done]
-	build successfully !
-
-[2024-07-02 17:51:14]	[done]
-	build successfully !
-
-[2024-07-02 20:38:23]	[done]
-	build successfully !
-
-[2024-07-02 20:43:13]	[done]
-	build successfully !
-
-[2024-07-02 20:45:42]	[done]
-	build successfully !
-
-[2024-07-02 20:48:01]	[done]
-	build successfully !
-
-[2024-07-02 20:50:45]	[done]
-	build successfully !
-
-[2024-07-02 20:52:54]	[done]
-	build successfully !
-
-[2024-07-02 20:59:01]	[done]
-	build successfully !
-
-[2024-07-02 21:12:47]	[done]
-	build successfully !
-
-[2024-07-02 21:35:39]	[done]
-	build successfully !
-
-[2024-07-02 21:39:48]	[done]
-	build successfully !
-
-[2024-07-02 21:48:09]	[done]
-	build successfully !
-
-[2024-07-03 11:18:33]	[done]
-	build successfully !
-
-[2024-07-03 11:19:11]	[done]
-	build successfully !
-
-[2024-07-03 11:22:54]	[done]
-	build successfully !
-
-[2024-07-03 11:25:33]	[done]
-	build successfully !
-
-[2024-07-03 11:26:43]	[done]
-	build successfully !
-
-[2024-07-03 11:31:23]	compilation failed at : "d:\emmble-2024\Burry_Car\User\Task\tsk_config_and_callback.cpp", exit code: 1
-command: 
-  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --cpp --apcs=interwork -I. -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../Core/Inc -I../User/Congfig -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\..\MDK-ARM\infantry\.obj\__\User\Task\tsk_config_and_callback.o --no_depend_system_headers --depend .\..\MDK-ARM\infantry\.obj\__\User\Task\tsk_config_and_callback.d .\..\User\Task\tsk_config_and_callback.cpp
-   at unify_builder.Program.Main(String[] args_)
----
-".\..\User\Task\tsk_config_and_callback.cpp", line 157: Error:  #20: identifier "test_data" is undefined
-      HAL_UART_Transmit(&huart6, test_data, 8, 1000);
-                                 ^
-.\..\User\Task\tsk_config_and_callback.cpp: 0 warnings, 1 error
-
-[2024-07-03 11:31:40]	[done]
-	build successfully !
-
-[2024-07-03 11:34:06]	[done]
-	build successfully !
-
-[2024-07-03 11:34:13]	[done]
-	build successfully !
-
-[2024-07-03 11:44:25]	[done]
-	build successfully !
-
-[2024-07-03 11:44:38]	[done]
-	build successfully !
-
-[2024-07-03 11:45:06]	[done]
-	build successfully !
-
-[2024-07-03 11:49:27]	[done]
-	build successfully !
-
-[2024-07-03 11:50:39]	[done]
-	build successfully !
-
-[2024-07-03 11:51:05]	[done]
-	build successfully !
-
-[2024-07-03 11:52:28]	[done]
-	build successfully !
-
-[2024-07-03 11:52:40]	[done]
-	build successfully !
-
-[2024-07-03 11:53:22]	[done]
-	build successfully !
-
-[2024-07-03 11:53:31]	[done]
-	build successfully !
-
-[2024-07-03 12:08:22]	[done]
-	build successfully !
-
-[2024-07-03 12:09:41]	[done]
-	build successfully !
-
-[2024-07-03 12:40:42]	compilation failed at : "d:\emmble-2024\Burry_Car\Core\Src\main.c", exit code: 1
-command: 
-  "D:\Keil5\keil5_anzhuangbao\ARM\ARMCC\bin\armcc.exe" -c --apcs=interwork -I. -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../User/Chariot -I../User/Device -I../User/Interaction -I../User/Middleware/Algorithm -I../User/Middleware/Driver -I../User/Task -I../Drivers/CMSIS/DSP/Include -I../Core/Inc -I../User/Congfig -IRTE/_infantry -DUSE_HAL_DRIVER -DSTM32F407xx -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__TARGET_FPU_VFP -D__FPU_PRESENT="1" --cpu Cortex-M4.fp --li --c99 -D__MICROLIB -O0 --split_sections -W --cpp11 -g -o .\..\MDK-ARM\infantry\.obj\__\Core\Src\main.o --no_depend_system_headers --depend .\..\MDK-ARM\infantry\.obj\__\Core\Src\main.d .\..\Core\Src\main.c
-   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
-   at unify_builder.Program.Main(String[] args_)
----
-"../User/Interaction/ita_chariot.h", line 17: Error:  #5: cannot open source input file "iwdog.h": No such file or directory
-  #include "iwdog.h"
-                    ^
-.\..\Core\Src\main.c: 0 warnings, 1 error
-
-[2024-07-03 12:41:38]	[done]
-	build successfully !
-
-[2024-07-03 12:41:57]	[done]
-	build successfully !
-
-[2024-07-03 12:42:23]	[done]
-	build successfully !
-
-[2024-07-03 12:42:38]	[done]
-	build successfully !
-
-[2024-07-03 12:44:25]	[done]
-	build successfully !
-
-[2024-07-03 12:46:56]	[done]
-	build successfully !
-
-[2024-07-03 12:47:09]	[done]
+[2024-07-18 18:05:36]	[done]
 	build successfully !
 
-[2024-07-03 12:49:05]	[done]
+[2024-07-18 19:21:06]	[done]
 	build successfully !
 
-[2024-07-03 12:51:07]	[done]
+[2024-07-18 19:24:42]	[done]
 	build successfully !
 
-[2024-07-03 12:55:02]	[done]
+[2024-07-18 19:27:44]	[done]
 	build successfully !
 
-[2024-07-03 12:55:08]	[done]
+[2024-07-18 19:32:48]	[done]
 	build successfully !
 
-[2024-07-03 12:57:05]	[done]
+[2024-07-18 20:15:21]	[done]
 	build successfully !
 
-[2024-07-03 16:45:26]	[done]
+[2024-07-18 20:15:28]	[done]
 	build successfully !
 
-[2024-07-03 17:35:02]	[done]
+[2024-07-18 20:27:13]	[done]
 	build successfully !
 
-[2024-07-04 11:09:48]	[done]
+[2024-07-18 20:28:17]	[done]
 	build successfully !
 
-[2024-07-04 16:53:03]	[done]
+[2024-07-18 20:34:14]	[done]
 	build successfully !
 
-[2024-07-04 16:53:15]	[done]
+[2024-07-18 20:49:46]	[done]
 	build successfully !
 
-[2024-07-04 17:31:41]	[done]
+[2024-07-18 20:59:25]	[done]
 	build successfully !
 
-[2024-07-07 17:34:58]	[done]
+[2024-07-18 21:01:52]	[done]
 	build successfully !
 
-[2024-07-07 17:36:18]	[done]
+[2024-07-18 21:03:33]	[done]
 	build successfully !
 
-[2024-07-07 17:39:11]	[done]
+[2024-07-18 21:03:41]	[done]
 	build successfully !
 
-[2024-07-07 17:39:17]	[done]
+[2024-07-18 21:03:59]	[done]
 	build successfully !
 
-[2024-07-07 17:41:28]	[done]
+[2024-07-18 21:04:11]	[done]
 	build successfully !
 
-[2024-07-07 17:41:34]	[done]
+[2024-07-18 21:05:35]	[done]
 	build successfully !
 
-[2024-07-07 17:43:08]	[done]
+[2024-07-18 21:05:51]	[done]
 	build successfully !
 
-[2024-07-07 17:43:34]	[done]
+[2024-07-18 21:07:30]	[done]
 	build successfully !
 
-[2024-07-07 17:45:24]	[done]
+[2024-07-18 21:11:02]	[done]
 	build successfully !
 
-[2024-07-07 17:47:20]	[done]
+[2024-07-18 21:16:49]	[done]
 	build successfully !
 
-[2024-07-07 17:48:10]	[done]
+[2024-07-18 21:19:05]	[done]
 	build successfully !
 
-[2024-07-07 18:34:20]	[done]
+[2024-07-18 21:25:00]	[done]
 	build successfully !
 

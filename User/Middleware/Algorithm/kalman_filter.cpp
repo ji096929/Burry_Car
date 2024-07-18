@@ -390,14 +390,12 @@ float *Kalman_Filter_Update(KalmanFilter_t *kf)
         // 量测更新
         // 3. K(k) = P'(k)·HT / (H·P'(k)·HT + R)
         Kalman_Filter_SetK(kf);
-
         if (kf->User_Func3_f != NULL)
             kf->User_Func3_f(kf);
 
         // 融合
         // 4. xhat(k) = xhat'(k) + K(k)·(z(k) - H·xhat'(k))
         Kalman_Filter_xhatUpdate(kf);
-
         if (kf->User_Func4_f != NULL)
             kf->User_Func4_f(kf);
 

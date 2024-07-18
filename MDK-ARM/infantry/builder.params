@@ -7,7 +7,7 @@
     "buildMode": "fast|multhread",
     "showRepathOnLog": true,
     "threadNum": 12,
-    "rootDir": "d:\\emmble-2024\\Burry_Car\\MDK-ARM",
+    "rootDir": "d:\\emmble-2024\\嵌入式大赛\\Burry_Car\\MDK-ARM",
     "dumpPath": "..\\MDK-ARM\\infantry",
     "outDir": "..\\MDK-ARM\\infantry",
     "ram": 131072,
@@ -80,6 +80,7 @@
         "../User/Device/dvc_dwt.cpp",
         "../User/Device/dvc_imu.cpp",
         "../User/Device/dvc_motor.cpp",
+        "../User/Device/dvc_ws2812.c",
         "../User/Interaction/ita_chariot.cpp",
         "../User/Middleware/Algorithm/PID.cpp",
         "../User/Middleware/Algorithm/QuaternionEKF.cpp",
@@ -133,20 +134,20 @@
             "ro-base": "",
             "rw-base": "",
             "link-scatter": [
-                "\"d:/emmble-2024/Burry_Car/MDK-ARM/infantry/infantry.sct\""
+                "\"d:/emmble-2024/嵌入式大赛/Burry_Car/MDK-ARM/infantry/infantry.sct\""
             ]
         }
     },
     "env": {
-        "workspaceFolder": "d:\\emmble-2024\\Burry_Car\\MDK-ARM",
+        "workspaceFolder": "d:\\emmble-2024\\嵌入式大赛\\Burry_Car\\MDK-ARM",
         "workspaceFolderBasename": "MDK-ARM",
-        "OutDir": "d:\\emmble-2024\\Burry_Car\\MDK-ARM\\..\\MDK-ARM\\infantry",
+        "OutDir": "d:\\emmble-2024\\嵌入式大赛\\Burry_Car\\MDK-ARM\\..\\MDK-ARM\\infantry",
         "OutDirRoot": "..\\MDK-ARM",
         "OutDirBase": "..\\MDK-ARM\\infantry",
         "ProjectName": "infantry",
         "ConfigName": "infantry",
-        "ProjectRoot": "d:\\emmble-2024\\Burry_Car\\MDK-ARM",
-        "ExecutableName": "d:\\emmble-2024\\Burry_Car\\MDK-ARM\\..\\MDK-ARM\\infantry\\infantry",
+        "ProjectRoot": "d:\\emmble-2024\\嵌入式大赛\\Burry_Car\\MDK-ARM",
+        "ExecutableName": "d:\\emmble-2024\\嵌入式大赛\\Burry_Car\\MDK-ARM\\..\\MDK-ARM\\infantry\\infantry",
         "SYS_Platform": "win32",
         "SYS_DirSep": "\\",
         "SYS_DirSeparator": "\\",
@@ -162,6 +163,6 @@
         "global": "a620fd78ce68cb35fdf638caa176e530",
         "c/cpp-compiler": "c0469c3553a1be63fcd593ea22151dac",
         "asm-compiler": "99914b932bd37a50b983c5e7c90ae93b",
-        "linker": "36fbf003ed654bb200700434e1887830"
+        "linker": "833109a08985ac789c8f897e1030b7ba"
     }
 }

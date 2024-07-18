@@ -25,7 +25,6 @@ void Class_IMU::Init()
  
     //EKF初始化
     IMU_QuaternionEKF_Init(10, 0.001, 10000000, 1, 0 ,&QEKF_INS);
-
     INS.AccelLPF = 0.0085;
 
     //初始化温控pid参数
